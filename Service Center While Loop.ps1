@@ -1,7 +1,6 @@
 ﻿
-$Local = Read-Host "Enter Service Center Location"
-
-do {
+:serviceloop while(1) {
+    $Local = Read-Host "Enter Service Center Location"
     switch ($Local)
         {
             "MA" {$Local = "MA"}
@@ -26,20 +25,20 @@ do {
             "FL" {$Local = "FL"}
             "Florida" {$Local = "FL"}
             "Lake City" {$Local = "FL"}
-            default {$Local = Read-Host "Sorry try it again"}
-
+            default {
+                Write-Host "Invalid response."
+                continue serviceloop
+            }
         }
 
     Write-Host $Local
 
-    $Correct4 = Read-Host "If This is Correct Press Enter, If not type n then enter"
+    $Correct4 = Read-Host "Is this correct? [y/n]"
  
-    if ($Correct4 -eq "no")
-        {$Local = Read-Host "Sorry try it again"}
-    elseif ($Correct4 -eq "n")
-        {$Local = Read-Host "Sorry try it again"}
-
+    if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+        break
     }
-while (($Local -ne "MA") -or ($Local -ne "NH") -or ($Local -ne "FL") -or ($Local -ne "CT") -or ($Local -ne "Brattleboro") -or ($Local -ne "Burlington") -or ($Local -ne "ME"))
+        
+    }
 
 write-host $Local
