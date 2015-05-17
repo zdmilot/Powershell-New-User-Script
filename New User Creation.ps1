@@ -128,49 +128,49 @@ $User = “$user”.tolower()
     switch ($Local)
         {
             "MA" {$Local = "MA"
-                  $Phone = "(508) 966-"}
+                  $PhoneArea = "(508) 966-"}
             "Mass" {$Local = "MA"
-                    $Phone = "(508) 966-"}
+                    $PhoneArea = "(508) 966-"}
             "Massachusetts" {$Local = "MA"
                              $Phone = "(508) 966-"}
             "Franklin" {$Local = "MA"
-                        $Phone = "(508) 966-"}
+                        $PhoneArea = "(508) 966-"}
             "VT" {$Local = Read-Host "Burlington or Brattleboro"
-                  $Phone = "(508) 966-"}
+                  $PhoneArea = "(508) 966-"}
             "Vermont" {$Local = Read-Host "Burlington or Brattleboro"
-                       $Phone = "(508) 966-"}
+                       $PhoneArea = "(508) 966-"}
             "Burlington" {$Local = "Burlington"
-                          $Phone = "(508) 966-"}
+                          $PhoneArea = "(508) 966-"}
             "Brattleboro" {$Local = "Brattleboro"
-                           $Phone = "(508) 966-"}
+                           $PhoneArea = "(508) 966-"}
             "ME" {$Local = "ME"
-                  $Phone = "(508) 966-"}
+                  $PhoneArea = "(508) 966-"}
             "Maine" {$Local = "ME"
-                     $Phone = "(508) 966-"}
+                     $PhoneArea = "(508) 966-"}
             "Portland" {$Local = "ME"
-                        $Phone = "(508) 966-"}
+                        $PhoneArea = "(508) 966-"}
             "NH" {$Local = "NH"
                   $Phone = "(508) 966-"}
             "New Hampshire" {$Local = "NH"
-                             $Phone = "(508) 966-"}
+                             $PhoneArea = "(508) 966-"}
             "Portsmith" {$Local = "NH"
-                         $Phone = "(508) 966-"}
+                         $PhoneArea = "(508) 966-"}
             "Connecticut" {$Local = "CT"
-                           $Phone = "(508) 966-"}
+                           $PhoneArea = "(508) 966-"}
             "Durham" {$Local = "CT"
-                      $Phone = "(508) 966-"}
+                      $PhoneArea = "(508) 966-"}
             "NJ" {$Local = "NJ"
-                  $Phone = "(508) 966-"}
+                  $PhoneArea = "(508) 966-"}
             "New Jersey" {$Local = "NJ"
-                          $Phone = "(508) 966-"}
+                          $PhoneArea = "(508) 966-"}
             "Kearny" {$Local = "NJ"
-                      $Phone = "(508) 966-"}
+                      $PhoneArea = "(508) 966-"}
             "FL" {$Local = "FL"
-                  $Phone = "(508) 966-"}
+                  $PhoneArea = "(508) 966-"}
             "Florida" {$Local = "FL"
-                       $Phone = "(508) 966-"}
+                       $PhoneArea = "(508) 966-"}
             "Lake City" {$Local = "FL"
-                         $Phone = "(508) 966-"}
+                         $PhoneArea = "(508) 966-"}
             default {
                 Write-Host "Invalid response."
                 continue serviceloop
@@ -241,10 +241,12 @@ $User = “$user”.tolower()
 $EmailAddress = $User"@"$emailending
 
 
+$Phone = $PhoneArea$Ext
+
 Write-Host "User's Last Name Is: " $Last
 Write-Host "User's First Name Is :" $First
 Write-Host "User's Department Is :" $Dept
 Write-Host "User's Location Is :" $Local
 Write-Host "User's Extention :" $Ext
-Write-Host "User's Phone Number :" $Phone$Ext
+Write-Host "User's Phone Number :" $Phone
 Write-Host "User's Email Address :" $EmailAddress
