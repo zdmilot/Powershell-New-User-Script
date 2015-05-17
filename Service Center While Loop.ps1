@@ -18,6 +18,7 @@
             "New Hampshire" {$Local = "NH"}
             "Portsmith" {$Local = "NH"}
             "Connecticut" {$Local = "CT"}
+            "CT" {$Local = "CT"}
             "Durham" {$Local = "CT"}
             "NJ" {$Local = "NJ"}
             "New Jersey" {$Local = "NJ"}
