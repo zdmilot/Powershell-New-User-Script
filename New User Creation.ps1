@@ -237,10 +237,14 @@ $User = “$user”.tolower()
         
     }
 
+
+$EmailAddress = $User"@"$emailending
+
+
 Write-Host "User's Last Name Is: " $Last
 Write-Host "User's First Name Is :" $First
 Write-Host "User's Department Is :" $Dept
 Write-Host "User's Location Is :" $Local
 Write-Host "User's Extention :" $Ext
 Write-Host "User's Phone Number :" $Phone$Ext
-Write-Host "User's Email Address :" $User"@"$emailending
+Write-Host "User's Email Address :" $EmailAddress
