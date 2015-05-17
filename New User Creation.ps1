@@ -64,9 +64,11 @@ else    {
 
 
 
-$user = $First[0] + $Last
+$User = $First[0] + $Last
 
-    Write-Host `nUsername is:(“$user”.tolower())`n
+$User = “$user”.tolower()
+
+    Write-Host `nUsername is:($User)`n
 
 
 
@@ -204,9 +206,41 @@ $user = $First[0] + $Last
         }
         }
 
+
+:serviceloop while(1) {
+    $Company = Read-Host "Enter Company (ENPRO, TMC Environmental, ENPRO Environmental)"
+    switch ($Company)
+        {
+            "ENPRO" {$Company = "ENPRO"
+                     $emailending = "enpro.com"}
+            "EN" {$Company = "ENPRO"
+                  $emailending = "enpro.com"}
+            "TMC Environmental" {$Company = "TMC Environmental"
+                                 $emailending = "tmcenvironmental.com"}
+            "TMC"  {$Company = "TMC Environmental"
+                    $emailending = "tmcenvironmental.com"}
+            "ENPEnv" {$Company = "ENPRO Environmental"
+                      $emailending = "enproenv.com"}
+            default {
+                Write-Host "Invalid response."
+                continue serviceloop
+            }
+        }
+
+    Write-Host $Company
+
+    $Correct6 = Read-Host "Is this correct? [y/n]"
+ 
+    if ($Correct6 -eq "y" -or $Correct6 -eq "Y") {
+        break
+    }
+        
+    }
+
 Write-Host "User's Last Name Is: " $Last
 Write-Host "User's First Name Is :" $First
 Write-Host "User's Department Is :" $Dept
 Write-Host "User's Location Is :" $Local
 Write-Host "User's Extention :" $Ext
 Write-Host "User's Phone Number :" $Phone$Ext
+Write-Host "User's Email Address :" $User"@"$emailending
