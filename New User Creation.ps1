@@ -7,50 +7,27 @@ Powershell New Ad User Script`n
 **********************************************************************************`n"
 
 :serviceloop while(1) {
-                    $Last = Read-Host "Enter Last Name"
-                    if (($Last[0] + $Last[1]) -eq "mc")
-                    {
-                        do {
+            :serviceloop while(1) {
+                        $Last = Read-Host "Enter Last Name"
+
+                       if (($Last[0] + $Last[1]) -eq "mc")
+                            {
                         $Last1 = $Last[0] + $Last[1]
                         $Last2 = $Last.substring(2)
                         $Last = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
+                            }
+                        else{
+                        $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
+                            }
 
                            write-Host $Last
-
-                           $Correct1 = Read-Host "Is this correct? [y/n]"
-
-                            if ($Correct1 -ne "Y")
-                                 {$Last = Read-Host "Sorry try it again"
-                                 }
-                            else
-                                    {break
-                                  }
-                             }
-                        While (($Last[0] + $Last[1]) -eq "mc")
-                    }
-                    #If you accidentally dont enter mc in the first place then it wont correct the capitalization but there is corection code below anyway
-                    else
-                        {$Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
-
-                          Write-Host $Last
-
+                      
                         $Correct1 = Read-Host "Is this correct? [y/n]"
-
-                        if ($Correct1 -ne "Y")
-                             {$Last = Read-Host "Sorry try it again"
-                                $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
-                                        Write-Host $Last
-                             }
-                             }
-                    #So this is put in there just in case
-                    if (($Last[0] + $Last[1]) -eq "mc")
-                        {
-                        $Last1 = $Last[0] + $Last[1]
-                        $Last2 = $Last.substring(2)
-                        $Last = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
+ 
+                        if ($Correct1 -eq "y" -or $Correct1 -eq "Y") {
+                            break
+                                  }
                         }
-                    else
-                        {}
 
 
               :serviceloop while(1) {
@@ -130,57 +107,110 @@ Powershell New Ad User Script`n
                         }
 
 
+                     :serviceloop while(1) {
+                        $Title = Read-Host "Enter Job Title"
+
+                        $Title = (Get-Culture).textinfo.totitlecase(“$Title”.tolower())
+
+                        Write-Host $Title
+
+                        $Correct4 = Read-Host "Is this correct? [y/n]"
+ 
+                        if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+                            break
+                                  }
+                        }
 
                     :serviceloop while(1) {
                         $Local = Read-Host "Enter Service Center Location"
                         switch ($Local)
                             {
                                 "MA" {$Local = "MA"
-                                      $PhoneArea = "(508) 966-"}
+                                      $ServCity = "Franklin"
+                                      $PhoneArea = "(508) 966-"
+                                      $Fax = "(508) 966-4861"}
                                 "Mass" {$Local = "MA"
-                                        $PhoneArea = "(508) 966-"}
+                                        $ServCity = "Franklin"
+                                        $PhoneArea = "(508) 966-"
+                                        $Fax = "(508) 966-4861"}
                                 "Massachusetts" {$Local = "MA"
-                                                 $Phone = "(508) 966-"}
+                                                 $ServCity = "Franklin"
+                                                 $Phone = "(508) 966-"
+                                                 $Fax = "(508) 966-4861"}
                                 "Franklin" {$Local = "MA"
-                                            $PhoneArea = "(508) 966-"}
-                                "VT" {$Local = Read-Host "Burlington or Brattleboro"
-                                      $PhoneArea = "(508) 966-"}
-                                "Vermont" {$Local = Read-Host "Burlington or Brattleboro"
-                                           $PhoneArea = "(508) 966-"}
-                                "Burlington" {$Local = "Burlington"
-                                              $PhoneArea = "(508) 966-"}
-                                "Brattleboro" {$Local = "Brattleboro"
-                                               $PhoneArea = "(508) 966-"}
+                                            $ServCity = "Franklin"
+                                            $PhoneArea = "(508) 966-"
+                                            $Fax = "(508) 966-4861"}
+                                "VT" {$Local = Read-Host "Burlington or Brattleboro"}
+                                "Vermont" {$Local = Read-Host "Burlington or Brattleboro"}
+                                "Burlington" {$Local = "VT"
+                                               $ServCity = $Local
+                                              $PhoneArea = "(508) 966-"
+                                              $Fax = "(508) 966-4861"}
+                                "Brattleboro" {$Local = "VT"
+                                               $ServCity = $Local
+                                               $PhoneArea = "(508) 966-"
+                                               $Fax = "(508) 966-4861"}
                                 "ME" {$Local = "ME"
-                                      $PhoneArea = "(508) 966-"}
+                                      $ServCity = "Portland"
+                                      $PhoneArea = "(508) 966-"
+                                      $Fax = "(508) 966-4861"}
                                 "Maine" {$Local = "ME"
-                                         $PhoneArea = "(508) 966-"}
+                                         $ServCity = "Portland"
+                                         $PhoneArea = "(508) 966-"
+                                         $Fax = "(508) 966-4861"}
                                 "Portland" {$Local = "ME"
-                                            $PhoneArea = "(508) 966-"}
+                                            $ServCity = "Portland"
+                                            $PhoneArea = "(508) 966-"
+                                            $Fax = "(508) 966-4861"}
                                 "NH" {$Local = "NH"
-                                      $Phone = "(508) 966-"}
+                                      $ServCity = "Portsmith"
+                                      $Phone = "(508) 966-"
+                                      $Fax = "(508) 966-4861"}
                                 "New Hampshire" {$Local = "NH"
-                                                 $PhoneArea = "(508) 966-"}
+                                                 $ServCity = "Portsmith"
+                                                 $PhoneArea = "(508) 966-"
+                                                 $Fax = "(508) 966-4861"}
                                 "Portsmith" {$Local = "NH"
-                                             $PhoneArea = "(508) 966-"}
+                                             $ServCity = "Portsmith"
+                                             $PhoneArea = "(508) 966-"
+                                             $Fax = "(508) 966-4861"}
                                 "Connecticut" {$Local = "CT"
-                                               $PhoneArea = "(508) 966-"}
+                                               $ServCity = "Durham"
+                                               $PhoneArea = "(508) 966-"
+                                               $Fax = "(508) 966-4861"}
                                 "CT" {$Local = "CT"
-                                      $PhoneArea = "(860) 349-"}
+                                      $ServCity = "Durham"
+                                      $PhoneArea = "(860) 349-"
+                                      $Fax = "(508) 966-4861"}
                                 "Durham" {$Local = "CT"
-                                          $PhoneArea = "(860) 349-"}
+                                          $ServCity = "Durham"
+                                          $PhoneArea = "(860) 349-"
+                                          $Fax = "(508) 966-4861"}
                                 "NJ" {$Local = "NJ"
-                                      $PhoneArea = "(508) 966-"}
+                                      $ServCity = "Kearny"
+                                      $PhoneArea = "(508) 966-"
+                                      $Fax = "(508) 966-4861"}
                                 "New Jersey" {$Local = "NJ"
-                                              $PhoneArea = "(508) 966-"}
+                                              $ServCity = "Kearny"
+                                              $PhoneArea = "(508) 966-"
+                                              $Fax = "(508) 966-4861"}
                                 "Kearny" {$Local = "NJ"
-                                          $PhoneArea = "(508) 966-"}
+                                          $ServCity = "Kearny"
+                                          $PhoneArea = "(508) 966-"
+                                          $Fax = "(508) 966-4861"}
                                 "FL" {$Local = "FL"
-                                      $PhoneArea = "(508) 966-"}
+                                      $ServCity = "Lake City"
+                                      $PhoneArea = "(508) 966-"
+                                      $Fax = "(508) 966-4861"}
                                 "Florida" {$Local = "FL"
-                                           $PhoneArea = "(508) 966-"}
+                                           $ServCity = "Lake City"
+                                           $PhoneArea = "(508) 966-"
+                                           $Fax = "(508) 966-4861"}
                                 "Lake City" {$Local = "FL"
-                                             $PhoneArea = "(508) 966-"}
+                                             $ServCity = "Lake City"
+                                             $PhoneArea = "(508) 966-"
+                                             $Fax = "(508) 966-4861"}
                                 default {
                                     Write-Host "Invalid response."
                                     continue serviceloop
@@ -189,9 +219,9 @@ Powershell New Ad User Script`n
 
                         Write-Host $Local
 
-                        $Correct4 = Read-Host "Is this correct? [y/n]"
+                        $Correct5 = Read-Host "Is this correct? [y/n]"
  
-                        if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+                        if ($Correct5 -eq "y" -or $Correct5 -eq "Y") {
                             break
                         }     
                         }
@@ -206,9 +236,9 @@ Powershell New Ad User Script`n
 
                         Write-Host $Ext
 
-                        $Correct5 = Read-Host "Is this correct? [y/n]"
+                        $Correct6 = Read-Host "Is this correct? [y/n]"
  
-                        if ($Correct5 -eq "y" -or $Correct5 -eq "Y") {
+                        if ($Correct6 -eq "y" -or $Correct6 -eq "Y") {
                             break
                             }
                         else {
@@ -230,9 +260,9 @@ Powershell New Ad User Script`n
                                {Write-Host "Invalid response."
                                     continue serviceloop}
 
-                        $Correct6 = Read-Host "Is this correct? [y/n]"
+                        $Correct7 = Read-Host "Is this correct? [y/n]"
  
-                        if ($Correct6 -eq "y" -or $Correct6 -eq "Y") {
+                        if ($Correct7 -eq "y" -or $Correct7 -eq "Y") {
                             break
                             }
                         else {
@@ -264,9 +294,9 @@ Powershell New Ad User Script`n
 
                         Write-Host $Company
 
-                        $Correct6 = Read-Host "Is this correct? [y/n]"
+                        $Correct8 = Read-Host "Is this correct? [y/n]"
  
-                        if ($Correct6 -eq "y" -or $Correct6 -eq "Y") {
+                        if ($Correct8 -eq "y" -or $Correct8 -eq "Y") {
                             break
                         }
         
@@ -278,28 +308,40 @@ Powershell New Ad User Script`n
 
                     $Phone = $PhoneArea + $Ext
 
+
+                    $Initials = $First[0] + $Last[0]
+
+
+Write-Host `n
 Write-Host "User's Last Name Is: " $Last
 Write-Host "User's First Name Is :" $First
 Write-Host "User's Department Is :" $Dept
-Write-Host "User's Location Is :" $Local
+Write-Host "User's Location Is :" $ServCity"," $Local
+Write-Host "User's Job Title Is :" $Title
 Write-Host "User's Extention :" $Ext
 Write-Host "User's Phone Number :" $Phone
+Write-Host "User's Fax Number :" $Fax
 Write-Host "User's Mobile Phone Number :" $MobilePh
 Write-Host "User's Email Address :" $EmailAddress
 
 $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
 if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
+    Start-Sleep -s 2
     break
+
+    #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
+
+    #Now Add CSV creation/appending
+
+    #Now Add New-ADUser Creation
+    #New-ADUser -Name $First$Last -AccountPassword "Start02019" -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Country "USA" -Department $Dept -DisplayName $User -Division $Dept -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh [-Office <string>] -OfficePhone $Phone -Organization $Company [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-Server <string>] [-State <string>] [-StreetAddress <string>] [-Surname <string>] -Title $Title [-UserPrincipalName <string>] -Confirm
+
+    #Now Add Group Association
+
     }
 else{
    Write-Host "`n Retry Entering Information.`n"
    continue serviceloop
     }     
 }
-
-#Now Add CSV creation/appending
-
-#Now Add New-ADUser Creation
-
-#Now Add Group Association
