@@ -327,8 +327,8 @@ Write-Host "User's Email Address :" $EmailAddress
 $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
 if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
-    Start-Sleep -s 2
-    break
+    Start-Sleep -s 1
+    Write-Host "Would you like to add a another new user?"
 
     #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
 
@@ -339,7 +339,24 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
 
     #Now Add Group Association
 
+    Write-Host "New User Added"
+
+    $Correct4 = Read-Host "Would you like to add a another new user?"
+    if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+            Write-Host "Okay Add a New User`n"
+            Start-Sleep -s 1
+            continue serviceloop
+
+                }
+    else{
+               Write-Host "`n Okay then. Goodbye.`n"
+               Start-Sleep -s 1
+               break
+                }     
     }
+
+
+
 else{
    Write-Host "`n Retry Entering Information.`n"
    continue serviceloop
