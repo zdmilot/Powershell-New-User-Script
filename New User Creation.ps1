@@ -9,14 +9,11 @@ if (($Last[0] + $Last[1]) -eq "mc")
 
        write-Host $Last
 
-       $Correct1 = Read-Host "If This is Correct Press Enter, If not type n then enter"
+       $Correct1 = Read-Host "Is this correct? [y/n]"
 
-        if ($Correct1 -eq "no", "n")
+        if ($Correct1 -ne "Y")
              {$Last = Read-Host "Sorry try it again"
              }
-        elseif ($Correct1 -eq "n")
-               {$Last = Read-Host "Sorry try it again"
-            }
         else
                 {break
               }
@@ -29,20 +26,13 @@ else
 
       Write-Host $Last
 
-    $Correct1 = Read-Host "If This is Correct Press Enter, If not type n then enter"
+    $Correct1 = Read-Host "Is this correct? [y/n]"
 
-    if ($Correct1 -eq "no", "n")
+    if ($Correct1 -ne "Y")
          {$Last = Read-Host "Sorry try it again"
             $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
                     Write-Host $Last
          }
-    elseif ($Correct1 -eq "n")
-           {$Last = Read-Host "Sorry try it again"
-             $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
-                 Write-Host $Last
-         }
-
-
          }
 #So this is put in there just in case
 if (($Last[0] + $Last[1]) -eq "mc")
@@ -62,17 +52,14 @@ $First = (Get-Culture).textinfo.totitlecase(“$First”.tolower())
 
     Write-Host $First
 
-$Correct2 = Read-Host "If This is Correct Press Enter, If not type n then enter"
+$Correct2 = Read-Host "Is this correct? [y/n]"
 
-if ($Correct2 -eq "no")
+if ($Correct1 -ne "Y")
         {$First = Read-Host "Sorry try it again"
            $First = (Get-Culture).textinfo.totitlecase(“$First”.tolower())
                 Write-Host $First
         }
-elseif ($Correct2 -eq "n")
-        {$First = Read-Host "Sorry try it again"
-           $First = (Get-Culture).textinfo.totitlecase(“$First”.tolower())
-                Write-Host $First
+else    {
         }
 
 
@@ -124,9 +111,9 @@ $user = $First[0] + $Last
 
     Write-Host $Dept
 
-    $Correct5 = Read-Host "If This is Correct Press Enter, If not type n then enter"
+    $Correct3 = Read-Host "Is this correct? [y/n]"
  
-    if ($Correct5 -ne "n" -or $Correct5 -ne "no") {
+    if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
         break
     }
         
@@ -138,28 +125,50 @@ $user = $First[0] + $Last
     $Local = Read-Host "Enter Service Center Location"
     switch ($Local)
         {
-            "MA" {$Local = "MA"}
-            "Mass" {$Local = "MA"}
-            "Massachusetts" {$Local = "MA"}
-            "Franklin" {$Local = "MA"}
-            "VT" {$Local = Read-Host "Burlington or Brattleboro"}
-            "Vermont" {$Local = Read-Host "Burlington or Brattleboro"}
-            "Burlington" {$Local = "Burlington"}
-            "Brattleboro" {$Local = "Brattleboro"}
-            "ME" {$Local = "ME"}
-            "Maine" {$Local = "ME"}
-            "Portland" {$Local = "ME"}
-            "NH" {$Local = "NH"}
-            "New Hampshire" {$Local = "NH"}
-            "Portsmith" {$Local = "NH"}
-            "Connecticut" {$Local = "CT"}
-            "Durham" {$Local = "CT"}
-            "NJ" {$Local = "NJ"}
-            "New Jersey" {$Local = "NJ"}
-            "Kearny" {$Local = "NJ"}
-            "FL" {$Local = "FL"}
-            "Florida" {$Local = "FL"}
-            "Lake City" {$Local = "FL"}
+            "MA" {$Local = "MA"
+                  $Phone = "(508) 966-"}
+            "Mass" {$Local = "MA"
+                    $Phone = "(508) 966-"}
+            "Massachusetts" {$Local = "MA"
+                             $Phone = "(508) 966-"}
+            "Franklin" {$Local = "MA"
+                        $Phone = "(508) 966-"}
+            "VT" {$Local = Read-Host "Burlington or Brattleboro"
+                  $Phone = "(508) 966-"}
+            "Vermont" {$Local = Read-Host "Burlington or Brattleboro"
+                       $Phone = "(508) 966-"}
+            "Burlington" {$Local = "Burlington"
+                          $Phone = "(508) 966-"}
+            "Brattleboro" {$Local = "Brattleboro"
+                           $Phone = "(508) 966-"}
+            "ME" {$Local = "ME"
+                  $Phone = "(508) 966-"}
+            "Maine" {$Local = "ME"
+                     $Phone = "(508) 966-"}
+            "Portland" {$Local = "ME"
+                        $Phone = "(508) 966-"}
+            "NH" {$Local = "NH"
+                  $Phone = "(508) 966-"}
+            "New Hampshire" {$Local = "NH"
+                             $Phone = "(508) 966-"}
+            "Portsmith" {$Local = "NH"
+                         $Phone = "(508) 966-"}
+            "Connecticut" {$Local = "CT"
+                           $Phone = "(508) 966-"}
+            "Durham" {$Local = "CT"
+                      $Phone = "(508) 966-"}
+            "NJ" {$Local = "NJ"
+                  $Phone = "(508) 966-"}
+            "New Jersey" {$Local = "NJ"
+                          $Phone = "(508) 966-"}
+            "Kearny" {$Local = "NJ"
+                      $Phone = "(508) 966-"}
+            "FL" {$Local = "FL"
+                  $Phone = "(508) 966-"}
+            "Florida" {$Local = "FL"
+                       $Phone = "(508) 966-"}
+            "Lake City" {$Local = "FL"
+                         $Phone = "(508) 966-"}
             default {
                 Write-Host "Invalid response."
                 continue serviceloop
@@ -168,15 +177,36 @@ $user = $First[0] + $Last
 
     Write-Host $Local
 
-    $Correct4 = Read-Host "If This is Correct Press Enter, If not type n then enter"
+    $Correct4 = Read-Host "Is this correct? [y/n]"
  
-    if ($Correct4 -ne "n" -or $Correct4 -ne "no") {
+    if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
         break
+    }     
     }
-        
-    }
+
+
+:serviceloop while(1) {
+    $Ext = Read-Host "Enter 4 Digit Extention"
+    if ("4" -ne ($Ext | measure-object -character | select -expandproperty characters))
+                {Write-Host "Invalid response."
+                continue serviceloop
+            }
+
+    Write-Host $Ext
+
+    $Correct5 = Read-Host "Is this correct? [y/n]"
+ 
+    if ($Correct5 -eq "y" -or $Correct5 -eq "Y") {
+        break
+        }
+    else {
+        continue serviceloop
+        }
+        }
 
 Write-Host "User's Last Name Is: " $Last
 Write-Host "User's First Name Is :" $First
 Write-Host "User's Department Is :" $Dept
 Write-Host "User's Location Is :" $Local
+Write-Host "User's Extention :" $Ext
+Write-Host "User's Phone Number :" $Phone$Ext
