@@ -208,6 +208,29 @@ $User = “$user”.tolower()
 
 
 :serviceloop while(1) {
+    $MobilePh = Read-Host "Enter 10 Digit Mobile Number (no hyphens or parentheses)(If no mobile number, just leave blank and hit enter)"
+    if ("0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
+                {Write-Host "No Mobile Number."
+            }
+    Else if ("10" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
+            {Write-Host $MobilePh
+             }
+    Else
+           {Write-Host "Invalid response."
+                continue serviceloop}
+
+    $Correct6 = Read-Host "Is this correct? [y/n]"
+ 
+    if ($Correct6 -eq "y" -or $Correct6 -eq "Y") {
+        break
+        }
+    else {
+        continue serviceloop
+        }
+        }
+
+
+:serviceloop while(1) {
     $Company = Read-Host "Enter Company (ENPRO, TMC Environmental, ENPRO Environmental)"
     switch ($Company)
         {
@@ -249,4 +272,5 @@ Write-Host "User's Department Is :" $Dept
 Write-Host "User's Location Is :" $Local
 Write-Host "User's Extention :" $Ext
 Write-Host "User's Phone Number :" $Phone
+Write-Host "User's Mobile Phone Number :" $MobilePh
 Write-Host "User's Email Address :" $EmailAddress
