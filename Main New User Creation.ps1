@@ -312,17 +312,17 @@ Powershell New Ad User Script`n
                     $Initials = $First[0] + $Last[0]
 
 
-Write-Host `n
-Write-Host "User's Last Name Is: " $Last
-Write-Host "User's First Name Is :" $First
-Write-Host "User's Department Is :" $Dept
-Write-Host "User's Location Is :" $ServCity"," $Local
-Write-Host "User's Job Title Is :" $Title
-Write-Host "User's Extention :" $Ext
-Write-Host "User's Phone Number :" $Phone
-Write-Host "User's Fax Number :" $Fax
-Write-Host "User's Mobile Phone Number :" $MobilePh
-Write-Host "User's Email Address :" $EmailAddress
+    Write-Host `n
+    Write-Host "User's Last Name Is: " $Last
+    Write-Host "User's First Name Is :" $First
+    Write-Host "User's Department Is :" $Dept
+    Write-Host "User's Location Is :" $ServCity"," $Local
+    Write-Host "User's Job Title Is :" $Title
+    Write-Host "User's Extention :" $Ext
+    Write-Host "User's Phone Number :" $Phone
+    Write-Host "User's Fax Number :" $Fax
+    Write-Host "User's Mobile Phone Number :" $MobilePh
+    Write-Host "User's Email Address :" $EmailAddress
 
 $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
