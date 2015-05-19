@@ -338,6 +338,7 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
     #New-ADUser -Name $First$Last -AccountPassword "Start02019" -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Country "USA" -Department $Dept -DisplayName $User -Division $Dept -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh [-Office <string>] -OfficePhone $Phone -Organization $Company [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-Server <string>] [-State <string>] [-StreetAddress <string>] [-Surname <string>] -Title $Title [-UserPrincipalName <string>] -Confirm
 
     #Now Add Group Association
+    #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
 
     Write-Host "New User Added"
 
