@@ -331,7 +331,9 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
     Write-Host "Would you like to add a another new user?"
 
     #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
-
+    
+    #Add a place for the CSV to go
+    $CurrentUser = [Environment]::UserName
     #Now Add CSV creation/appending
         New-Object -TypeName PSCustomObject -Property @{
             "Username" = $User
@@ -346,7 +348,7 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
             "Work Phone" = $Phone
             "Mobile Phone" = $MobilePh
             "Email Address" = $EmailAddress
-        } | Export-Csv -Path C:\Users\Zachary\Desktop\New_Users_Added.csv -NoTypeInformation -Append
+        } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation -Append
     #Now Add New-ADUser Creation
         #New-ADUser -Name $First$Last -AccountPassword "Start02019" -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Country "USA" -Department $Dept -DisplayName $User -Division $Dept -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh [-Office <string>] -OfficePhone $Phone -Organization $Company [-PostalCode <string>] [-ProfilePath <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-Server <string>] [-State <string>] [-StreetAddress <string>] [-Surname <string>] -Title $Title [-UserPrincipalName <string>] -Confirm
 
