@@ -368,8 +368,11 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
         } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation #-Append
    
     #Now Add New-ADUser Creation
-        New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress <#-Path "CN=$First$last,OU=TMC,OU=Franklin,OU=Office Employees,DC=MainOffice,DC=hazmatt,DC=com"#> -Confirm
-
+        New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress <#-Path "CN=$First$last,OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"#> -Confirm
+        
+        if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
+                                    {Set-ADUser $User -Replace @{info='no cell'}
+                                }
     #Now Add Group Association
         #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
 
