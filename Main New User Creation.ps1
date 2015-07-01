@@ -346,9 +346,7 @@ $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
 if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
     Start-Sleep -s 1
-
-    #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
-    
+        
     #Add a place for the CSV to go
     $CurrentUser = [Environment]::UserName
     #Now Add CSV creation/appending
@@ -359,16 +357,18 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
             "Department" = $Dept
             "Job Title" = $Title
             "Company" = $Company
+            "Address" = $Address
             "State" = $Local
             "City" = $ServCity
+            "Zip Code" = $Zip
             "Extension" = $Ext
             "Work Phone" = $Phone
             "Mobile Phone" = $MobilePh
             "Email Address" = $EmailAddress
-        } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation -Append
-    $TempPassword = $secureString = ConvertTo-SecureString "Start02019"
+        } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation #-Append
+   
     #Now Add New-ADUser Creation
-        New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword:") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $Email -Confirm
+        New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress <#-Path "CN=$First$last,OU=TMC,OU=Franklin,OU=Office Employees,DC=MainOffice,DC=hazmatt,DC=com"#> -Confirm
 
     #Now Add Group Association
         #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
