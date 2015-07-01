@@ -6,6 +6,7 @@ Powershell New Ad User Script`n
             
 **********************************************************************************`n"
 
+Import-Module ActiveDirectory
 :serviceloop while(1) {
             :serviceloop while(1) {
                         $Last = Read-Host "Enter Last Name"
@@ -258,6 +259,9 @@ Powershell New Ad User Script`n
                             }
                             }
                     #>
+                    #remove next line if using extension script
+                    $Ext = $DeExt
+                    #^^^^^^^^^^^^^^
 
                     :serviceloop while(1) {
                         $MobilePh = Read-Host "Enter 10 Digit Mobile Number (no hyphens or parentheses)(If no mobile number, just leave blank and hit enter)"
@@ -362,8 +366,9 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
             "Mobile Phone" = $MobilePh
             "Email Address" = $EmailAddress
         } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation -Append
+    $TempPassword = $secureString = ConvertTo-SecureString "Start02019"
     #Now Add New-ADUser Creation
-        New-ADUser -Name $First$Last -AccountPassword "Start02019" -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $Email -Confirm
+        New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword:") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $Email -Confirm
 
     #Now Add Group Association
         #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
