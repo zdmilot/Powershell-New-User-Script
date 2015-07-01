@@ -58,38 +58,13 @@ Powershell New Ad User Script`n
                         $Dept = Read-Host "Enter Department"
                         switch ($Dept)
                             {
-                                "Accounting" {$Dept = "Accounting"}
-                                "Account" {$Dept = "Accounting"}
-                                "Field" {$Dept = "Field Technician"}
-                                "Field Technician" {$Dept = "Field Technician"}
-                                "Field Tech" {$Dept = "Field Technician"}
-                                "Field Tech." {$Dept = "Field Technician"}
-                                "FT" {$Dept = "Field Technician"}
-                                "Ops" {$Dept = "Operations"}
-                                "Operations" {$Dept = "Operations"}
-                                "Transportation and Disposal" {$Dept = "Transportation and Disposal"}
-                                "Transportation & Disposal" {$Dept = "Transportation and Disposal"}
-                                "Transportation" {$Dept = "Transportation and Disposal"}
-                                "Disposal" {$Dept = "Transportation and Disposal"}
-                                "T & D" {$Dept = "Transportation and Disposal"}
-                                "T&D" {$Dept = "Transportation and Disposal"}
-                                "TD" {$Dept = "Transportation and Disposal"}
-                                "T and D" {$Dept = "Transportation and Disposal"}
-                                "Transport" {$Dept = "Transportation and Disposal"}
-                                "Project Manager" {$Dept = "Project Manager"}
-                                "Project" {$Dept = "Project Manager"}
-                                "PM" {$Dept = "Project Manager"}
-                                "Human Resources" {$Dept = "Human Resources"}
-                                "Human" {$Dept = "Human Resources"}
-                                "HR" {$Dept = "Human Resources"}
-                                "Resources" {$Dept = "Human Resources"}
-                                "Resources" {$Dept = "Human Resources"}
-                                "Information Technology" {$Dept = "Information Technology"}
-                                "Information Services" {$Dept = "Information Technology"}
-                                "IT" {$Dept = "Information Technology"}
-                                "IS" {$Dept = "Information Technology"}
-
-
+                                {($_ -eq "Accounting") -or ($_ -eq "Account") -or ($_ -eq "Acc")} {$Dept = "Accounting"}
+                                {($_ -eq "Field Technician") -or ($_ -eq "Field Tech.") -or ($_ -eq "Field Tech") -or ($_ -eq "Field") -or ($_ -eq "FT")} {$Dept = "Field Technician"}
+                                {($_ -eq "Operations") -or ($_ -eq "Ops.") -or ($_ -eq "Ops")} {$Dept = "Operations"}
+                                {($_ -eq "Transportation and Disposal") -or ($_ -eq "Transportation & Disposal") -or ($_ -eq "Transportation") -or ($_ -eq "Transport") -or ($_ -eq "Disposal") -or ($_ -eq "T and D") -or ($_ -eq "T & D") -or ($_ -eq "T&D") -or ($_ -eq "TD")} {$Dept = "Transportation and Disposal"}
+                                {($_ -eq "Project Manager") -or ($_ -eq "Project") -or ($_ -eq "PM")} {$Dept = "Project Manager"}
+                                {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
+                                {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS")} {$Dept = "Information Technology"}
                                 default {
                                     Write-Host "Invalid response."
                                     continue serviceloop
@@ -124,108 +99,132 @@ Powershell New Ad User Script`n
                     :serviceloop while(1) {
                         $Local = Read-Host "Enter Service Center Location"
                         switch ($Local)
-                            {
-                                "MA" {$Address = "19 National Drive"
-                                      $Local = "MA"
-                                      $ServCity = "Franklin"
-                                      $Zip = "02038"
-                                      $PhoneArea = "(508) 966-"
-                                      $Fax = "(508) 966-4861"}
-                                "Mass" {$Address = "19 National Drive"
-                                        $Local = "MA"
-                                        $ServCity = "Franklin"
-                                        $Zip = "02038"
-                                        $PhoneArea = "(508) 966-"
-                                        $Fax = "(508) 966-4861"}
-                                "Massachusetts" {$Address = "19 National Drive"
-                                                 $Local = "MA"
-                                                 $ServCity = "Franklin"
-                                                 $Zip = "02038"
-                                                 $Phone = "(508) 966-"
-                                                 $Fax = "(508) 966-4861"}
+                            { #DeExt = default extension aka the last 4 of the phone number of the service center. Thsi is here if one wanted to have code that created users with an extension equivilent to the last 4 digits of the service centers phone number
+                                {($_ -eq "MA") -or ($_ -eq "Mass") -or ($_ -eq "Massachusetts")} {Write-Host "Invalid response: Enter City of Service Center (Franklin or Salisbury)"
+                                            continue serviceloop}
                                 "Franklin" {$Local = "MA"
                                             $Address = "19 National Drive"
                                             $ServCity = "Franklin"
                                             $Zip = "02038"
                                             $PhoneArea = "(508) 966-"
+                                            $DeExt = "6000"
                                             $Fax = "(508) 966-4861"}
-                                "VT" {$Local = Read-Host "Burlington or Brattleboro"}
-                                "Vermont" {$Local = Read-Host "Burlington or Brattleboro"}
+
+                                "Salisbury" {$Local = "MA"
+                                            $Address = "114 Bridge Road"
+                                            $ServCity = "Salisbury"
+                                            $Zip = "01952"
+                                            $PhoneArea = "(978) 465-"
+                                            $DeExt = "1595"
+                                            $Fax = "(978) 465-2050"}
+
+
+                                {($_ -eq "VT") -or ($_ -eq "Vermont")} {Write-Host "Invalid response: Enter City of Service Center (S. Burlington, Burlington, or Williston)"
+                                            continue serviceloop}
+                                {($_ -eq "S. Burlington") -or ($_ -eq "S.Burlington") -or ($_ -eq "SBurlington") -or ($_ -eq "Southb") -or ($_ -eq "SouthBurlington") -or ($_ -eq "South Burlington")} {$Local = "MA"
+                                            $Address = "40 San Remo Drive"
+                                            $ServCity = "South Burlington"
+                                            $Zip = "05403"
+                                            $PhoneArea = "(802) 863-"
+                                            $DeExt = "5300"
+                                            $Fax = "(802) 863-0005"}
+
                                 "Burlington" {$Local = "VT"
-                                              $ServCity = $Local
-                                              $PhoneArea = "(508) 966-"
-                                              $Fax = "(508) 966-4861"}
-                                "Brattleboro" {$Local = "VT"
-                                               $ServCity = $Local
-                                               $PhoneArea = "(508) 966-"
-                                               $Fax = "(508) 966-4861"}
-                                "ME" {$Local = "ME"
-                                      $ServCity = "Portland"
-                                      $PhoneArea = "(508) 966-"
-                                      $Fax = "(508) 966-4861"}
-                                "Maine" {$Local = "ME"
-                                         $ServCity = "Portland"
-                                         $PhoneArea = "(508) 966-"
-                                         $Fax = "(508) 966-4861"}
+                                            $Address = "2 Flynn Ave"
+                                            $ServCity = "Burlington"
+                                            $Zip = "05401"
+                                            $PhoneArea = "(802) 488-"
+                                            $DeExt = "8100"
+                                            $Fax = "(802) 488-3950"}
+
+                                "Williston" {$Local = "VT"
+                                            $Address = "54 Avenue D"
+                                            $ServCity = "Williston"
+                                            $Zip = "05495"
+                                            $PhoneArea = "(802) 860-"
+                                            $DeExt = "1200"
+                                            $Fax = "(802) 860-7202"}
+
+
+                                {($_ -eq "ME") -or ($_ -eq "Maine")} {Write-Host "Invalid response: Enter City of Service Center (S. Portland or Portland)"
+                                            continue serviceloop}
                                 "Portland" {$Local = "ME"
+                                            $Address = "31 Waldron Way"
                                             $ServCity = "Portland"
-                                            $PhoneArea = "(508) 966-"
-                                            $Fax = "(508) 966-4861"}
-                                "NH" {$Local = "NH"
-                                      $ServCity = "Portsmith"
-                                      $Phone = "(508) 966-"
-                                      $Fax = "(508) 966-4861"}
-                                "New Hampshire" {$Local = "NH"
-                                                 $ServCity = "Portsmith"
-                                                 $PhoneArea = "(508) 966-"
-                                                 $Fax = "(508) 966-4861"}
+                                            $Zip = "04103"
+                                            $PhoneArea = "(207) 878-"
+                                            $DeExt = "3031"
+                                            $Fax = "(207) 878-3043"}
+
+                                {($_ -eq "S. Portland") -or ($_ -eq "S.Portland") -or ($_ -eq "SPortland") -or ($_ -eq "Southp") -or ($_ -eq "SouthPortland") -or ($_ -eq "South Portland")} {$Local = "ME"
+                                            $Address = "106 Main Street"
+                                            $ServCity = "South Portland"
+                                            $Zip = "04106"
+                                            $PhoneArea = "(207) 799-"
+                                            $DeExt = "0850"
+                                            $Fax = "(207) 799-5565"}
+
+
+                                {($_ -eq "NH") -or ($_ -eq "New Hampshire")} {Write-Host "Invalid response: Enter City of Service Center (Portsmith or Pembroke)"
+                                            continue serviceloop}
                                 "Portsmith" {$Local = "NH"
-                                             $ServCity = "Portsmith"
-                                             $PhoneArea = "(508) 966-"
-                                             $Fax = "(508) 966-4861"}
-                                "Connecticut" {$Local = "CT"
-                                               $ServCity = "Durham"
-                                               $PhoneArea = "(508) 966-"
-                                               $Fax = "(508) 966-4861"}
-                                "CT" {$Local = "CT"
-                                      $ServCity = "Durham"
-                                      $PhoneArea = "(860) 349-"
-                                      $Fax = "(508) 966-4861"}
-                                "Durham" {$Local = "CT"
-                                          $ServCity = "Durham"
-                                          $PhoneArea = "(860) 349-"
-                                          $Fax = "(508) 966-4861"}
-                                "NJ" {$Local = "NJ"
-                                      $ServCity = "Kearny"
-                                      $PhoneArea = "(508) 966-"
-                                      $Fax = "(508) 966-4861"}
-                                "New Jersey" {$Local = "NJ"
-                                              $ServCity = "Kearny"
-                                              $PhoneArea = "(508) 966-"
-                                              $Fax = "(508) 966-4861"}
-                                "Kearny" {$Local = "NJ"
-                                          $ServCity = "Kearny"
-                                          $PhoneArea = "(508) 966-"
-                                          $Fax = "(508) 966-4861"}
-                                "FL" {$Local = "FL"
-                                      $ServCity = "Lake City"
-                                      $PhoneArea = "(508) 966-"
-                                      $Fax = "(508) 966-4861"}
-                                "Florida" {$Local = "FL"
-                                           $ServCity = "Lake City"
-                                           $PhoneArea = "(508) 966-"
-                                           $Fax = "(508) 966-4861"}
-                                "Lake City" {$Local = "FL"
-                                             $ServCity = "Lake City"
-                                             $PhoneArea = "(508) 966-"
-                                             $Fax = "(508) 966-4861"}
+                                            $Address = "141 Banfield Road, Suite 11"
+                                            $ServCity = "Portsmith"
+                                            $Zip = "03801"
+                                            $PhoneArea = "(603) 436-"
+                                            $DeExt = "2364"
+                                            $Fax = "(603) 436-2386"}
+
+                                "Pembroke" {$Local = "NH"
+                                            $Address = "709 Keith Avenue"
+                                            $ServCity = "Pembroke"
+                                            $Zip = "03275"
+                                            $PhoneArea = "(603) 410-"
+                                            $DeExt = "1150"
+                                            $Fax = "(603) 410-1151"}
+
+
+                                {($_ -eq "CT") -or ($_ -eq "Connecticut") -or ($_ -eq "Durham")} {$Local = "CT"
+                                            $Address = "92 Commerce Circle"
+                                            $ServCity = "Durham"
+                                            $Zip = "06422"
+                                            $PhoneArea = "(203) 268-"
+                                            $DeExt = "7046"
+                                            $Fax = "(203) 268-7105"}
+
+
+                                {($_ -eq "NJ") -or ($_ -eq "New Jersey") -or ($_ -eq "NewJersey") -or ($_ -eq "Kearny")} {$Local = "NJ"
+                                            $Address = "9 Basin Drive, Suite 190"
+                                            $ServCity = "Kearny"
+                                            $Zip = "07032"
+                                            $PhoneArea = "(973) 344-"
+                                            $DeExt = "2309"
+                                            $Fax = "(508) 966-4861"}
+
+
+                                {($_ -eq "FL") -or ($_ -eq "Florida") -or ($_ -eq "Tampa")} {$Local = "FL"
+                                            $Address = "4015 W Osborne Avenue"
+                                            $ServCity = "Tampa"
+                                            $Zip = "33614"
+                                            $PhoneArea = "(813) 817-"
+                                            $DeExt = "2613"
+                                            $Fax = "(813) 871-2942"}
+
+
+                                {($_ -eq "NY") -or ($_ -eq "New York") -or ($_ -eq "NewYork") -or ($_ -eq "Albany")} {$Local = "NY"
+                                            $Address = "14 Walker Way, Unit 3"
+                                            $ServCity = "Albany"
+                                            $Zip = "12205"
+                                            $PhoneArea = "(518) 464-"
+                                            $DeExt = "7622"
+                                            $Fax = "(518) 464-7633"}
                                 default {
                                     Write-Host "Invalid response."
                                     continue serviceloop
                                 }
                             }
 
-                        Write-Host $Local
+                        Write-Host "$ServCity, $Local"
 
                         $Correct5 = Read-Host "Is this correct? [y/n]"
  
@@ -235,15 +234,20 @@ Powershell New Ad User Script`n
                         }
 
 
-                    :serviceloop while(1) {
-                        $Ext = Read-Host "Enter 4 Digit Extention"
-                        if ("4" -ne ($Ext | measure-object -character | select -expandproperty characters))
+                    <#:serviceloop while(1) {
+                        $Ext = Read-Host "Enter 4 Digit Extention (If no mobile number, just leave blank and hit enter)"
+                        if ("0" -eq ($Ext | measure-object -character | select -expandproperty characters))
+                                    {Write-Host "No Extention."
+                                    $Ext = $DeExt
+                                }
+                        elseif ( "4" -ne ($Ext | measure-object -character | select -expandproperty characters))
                                     {Write-Host "Invalid response."
                                     continue serviceloop
                                 }
-
-                        Write-Host $Ext
-
+                        else
+                            { Write-Host $Ext
+                                }
+                       
                         $Correct6 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct6 -eq "y" -or $Correct6 -eq "Y") {
@@ -253,7 +257,7 @@ Powershell New Ad User Script`n
                             continue serviceloop
                             }
                             }
-
+                    #>
 
                     :serviceloop while(1) {
                         $MobilePh = Read-Host "Enter 10 Digit Mobile Number (no hyphens or parentheses)(If no mobile number, just leave blank and hit enter)"
@@ -261,7 +265,8 @@ Powershell New Ad User Script`n
                                     {Write-Host "No Mobile Number."
                                 }
                         elseif (10 -eq ($MobilePh | measure-object -character | select -expandproperty characters))
-                                {$MobilePh = "(" + ($MobilePh.Substring(0,$MobilePh.Length-7)) + ") " + ($MobilePh.Substring(3,$MobilePh.Length-7)) + "-" + $MobilePh.substring($MobilePh.length - 4, 4)
+                                {$MobilePhEntry = ($MobilePh.Substring(0,$MobilePh.Length-7)) + "." + ($MobilePh.Substring(3,$MobilePh.Length-7)) + "." + $MobilePh.substring($MobilePh.length - 4, 4)
+                                $MobilePh = "(" + ($MobilePh.Substring(0,$MobilePh.Length-7)) + ") " + ($MobilePh.Substring(3,$MobilePh.Length-7)) + "-" + $MobilePh.substring($MobilePh.length - 4, 4)
                                             Write-Host $MobilePh
                                 }
                         else
@@ -284,15 +289,11 @@ Powershell New Ad User Script`n
                         $Company = Read-Host "Enter Company (ENPRO, TMC Environmental, ENPRO Environmental)"
                         switch ($Company)
                             {
-                                "ENPRO" {$Company = "ENPRO"
-                                         $emailending = "enpro.com"}
-                                "EN" {$Company = "ENPRO"
+                                {($_ -eq "ENPRO") -or ($_ -eq "EN")} {$Company = "ENPRO"
                                       $emailending = "enpro.com"}
-                                "TMC Environmental" {$Company = "TMC Environmental"
-                                                     $emailending = "tmcenvironmental.com"}
-                                "TMC"  {$Company = "TMC Environmental"
-                                        $emailending = "tmcenvironmental.com"}
-                                "ENPEnv" {$Company = "ENPRO Environmental"
+                                {($_ -eq "TMC Environmental") -or ($_ -eq "TMC")} {$Company = "TMC Environmental"
+                                      $emailending = "tmcenvironmental.com"}
+                                {($_ -eq "ENPRO Environmental") -or ($_ -eq "ENPEnv")} {$Company = "ENPRO Environmental"
                                           $emailending = "enproenv.com"}
                                 default {
                                     Write-Host "Invalid response."
@@ -326,17 +327,21 @@ Powershell New Ad User Script`n
     Write-Host "User's Department Is :" $Dept
     Write-Host "User's Location Is :" $ServCity"," $Local
     Write-Host "User's Job Title Is :" $Title
-    Write-Host "User's Extention :" $Ext
+    #Write-Host "User's Extention :" $Ext
     Write-Host "User's Phone Number :" $Phone
     Write-Host "User's Fax Number :" $Fax
     Write-Host "User's Mobile Phone Number :" $MobilePh
     Write-Host "User's Email Address :" $EmailAddress
 
+    #The following code converts the phone numbers with parentheses and dashes to a phone number with dots (to follow the naming convention of AD)
+
+    $Phone = ($Phone.Substring(1,$Phone.Length-11)) + "." + ($Phone.Substring(6,$Phone.Length-11)) + "." + $Phone.substring($Phone.length - 4, 4)
+    $Fax = ($Fax.Substring(1,$Fax.Length-11)) + "." + ($Fax.Substring(6,$Fax.Length-11)) + "." + $Fax.substring($Fax.length - 4, 4)
+
 $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
 if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
     Start-Sleep -s 1
-    Write-Host "Would you like to add a another new user?"
 
     #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
     
@@ -358,12 +363,14 @@ if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
             "Email Address" = $EmailAddress
         } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation -Append
     #Now Add New-ADUser Creation
-        #New-ADUser -Name $First$Last -AccountPassword "Start02019" -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company [-PostalCode <string>] [-SamAccountName <string>] [-ScriptPath <string>] [-Server <string>] -State $local [-StreetAddress <string>] [-Surname <string>] -Title $Title [-UserPrincipalName <string>] -Confirm
+        New-ADUser -Name $First$Last -AccountPassword "Start02019" -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $Email -Confirm
 
     #Now Add Group Association
         #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
 
     Write-Host "New User Added"
+
+    #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
 
     $Correct4 = Read-Host "Would you like to add a another new user?"
     if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
