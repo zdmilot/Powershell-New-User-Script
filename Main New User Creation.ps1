@@ -569,7 +569,7 @@ Import-Module ActiveDirectory
                                         {Set-ADUser $User -Replace @{info='no cell'}
                                     }
         #Now Add Group Association
-            #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
+            Add-ADGroupMember -Identity "General" -Members $EmailAddress
 
         Write-Host "New User Added"
 
