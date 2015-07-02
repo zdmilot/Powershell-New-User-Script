@@ -1,4 +1,4 @@
-﻿Write-Host "**********************************************************************************`n
+﻿﻿Write-Host "**********************************************************************************`n
             
 Powershell New Ad User Script`n
    Writen By: Zachary Milot`n
@@ -23,12 +23,11 @@ Import-Module ActiveDirectory
 
                            write-Host $Last
                       
-                        <#$Correct1 = Read-Host "Is this correct? [y/n]"
+                        $Correct1 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct1 -eq "y" -or $Correct1 -eq "Y") {
                             break
-                                  }#>
-                        break
+                                  }
                         }
 
 
@@ -39,29 +38,13 @@ Import-Module ActiveDirectory
 
                         Write-Host $First
 
-                        <#$Correct2 = Read-Host "Is this correct? [y/n]"
+                        $Correct2 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct2 -eq "y" -or $Correct2 -eq "Y") {
                             break
-                                  }#>
-                        break
+                                  }
                         }
  
-
-               :serviceloop while(1) {
-                        $MiddleI = Read-Host "Enter Middle Initial"
-
-                        $MiddleI = $MiddleI[0].ToString().ToUpper()
-
-                        Write-Host $MiddleI
-
-                        <#$Correct3 = Read-Host "Is this correct? [y/n]"
- 
-                        if ($Correct3 -eq "y" -or $Correct2 -eq "Y") {
-                            break
-                                  }#>
-                        break
-                        }
 
 
                     $User = $First[0] + $Last
@@ -81,7 +64,7 @@ Import-Module ActiveDirectory
                                 {($_ -eq "Operations") -or ($_ -eq "Ops.") -or ($_ -eq "Ops")} {$Dept = "Operations"}
                                 {($_ -eq "Transportation and Disposal") -or ($_ -eq "Transportation & Disposal") -or ($_ -eq "Transportation") -or ($_ -eq "Transport") -or ($_ -eq "Disposal") -or ($_ -eq "T and D") -or ($_ -eq "T & D") -or ($_ -eq "T&D") -or ($_ -eq "TD")} {$Dept = "Transportation and Disposal"}
                                 {($_ -eq "Project Manager") -or ($_ -eq "Project") -or ($_ -eq "PM")} {$Dept = "Project Manager"}
-                                {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "Compliance") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
+                                {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
                                 {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS") -or ($_ -eq "Tech") -or ($_ -eq "Tech.")} {$Dept = "Information Technology"}
                                 {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "Design")} {$Dept = "Marketing"}
                                 default {
@@ -92,12 +75,11 @@ Import-Module ActiveDirectory
 
                         Write-Host $Dept
 
-                        <#$Correct3 = Read-Host "Is this correct? [y/n]"
+                        $Correct3 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
                             break
-                        }#>
-                        break
+                        }
         
                         }
 
@@ -109,12 +91,11 @@ Import-Module ActiveDirectory
 
                         Write-Host $Title
 
-                        <#$Correct4 = Read-Host "Is this correct? [y/n]"
+                        $Correct4 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
                             break
-                                  }#>
-                        break
+                                  }
                         }
 
                     :serviceloop while(1) {
@@ -247,12 +228,11 @@ Import-Module ActiveDirectory
 
                         Write-Host "$ServCity, $Local"
 
-                        <#$Correct5 = Read-Host "Is this correct? [y/n]"
+                        $Correct5 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct5 -eq "y" -or $Correct5 -eq "Y") {
                             break
-                        } #>
-                        break    
+                        }     
                         }
 
 
@@ -288,26 +268,24 @@ Import-Module ActiveDirectory
                         $MobilePh = Read-Host "Enter 10 Digit Mobile Number (no hyphens or parentheses)(If no mobile number, just leave blank and hit enter)"
                         if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
                                     {Write-Host "No Mobile Number."
-                                    break
                                 }
                         elseif (10 -eq ($MobilePh | measure-object -character | select -expandproperty characters))
                                 {$MobilePhEntry = ($MobilePh.Substring(0,$MobilePh.Length-7)) + "." + ($MobilePh.Substring(3,$MobilePh.Length-7)) + "." + $MobilePh.substring($MobilePh.length - 4, 4)
                                 $MobilePh = "(" + ($MobilePh.Substring(0,$MobilePh.Length-7)) + ") " + ($MobilePh.Substring(3,$MobilePh.Length-7)) + "-" + $MobilePh.substring($MobilePh.length - 4, 4)
                                             Write-Host $MobilePh
-                                            break
                                 }
                         else
                                {Write-Warning "Invalid response."
                                     continue serviceloop}
 
-                        <#$Correct7 = Read-Host "Is this correct? [y/n]"
+                        $Correct7 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct7 -eq "y" -or $Correct7 -eq "Y") {
                             break
                             }
                         else {
                             continue serviceloop
-                            }#>
+                            }
         
                             }
 
@@ -330,12 +308,11 @@ Import-Module ActiveDirectory
 
                         Write-Host $Company
 
-                       <# $Correct8 = Read-Host "Is this correct? [y/n]"
+                        $Correct8 = Read-Host "Is this correct? [y/n]"
  
                         if ($Correct8 -eq "y" -or $Correct8 -eq "Y") {
                             break
-                        }#>
-                        break
+                        }
         
                         }
 
@@ -346,7 +323,7 @@ Import-Module ActiveDirectory
                     $Phone = $PhoneArea + $Ext
 
 
-                    $FullNameWS = $first + " " + $Last 
+                    $Initials = $First[0] + $Last[0]
 
 
     Write-Host `n
@@ -376,7 +353,6 @@ Import-Module ActiveDirectory
         $a = Get-Date
         $Timestamp = "$a.Day" + "/" + "$a.Month" + "/" + "$a.Year" + " UT: " +"$a.ToUniversalTime()"
         #Add a place for the CSV to go
-        [system.io.directory]::CreateDirectory("C:\Users\$CurrentUser\Desktop\NewUsers")
         $CurrentUser = [Environment]::UserName
         #Now Add CSV creation/appending
             New-Object -TypeName PSCustomObject -Property @{
@@ -593,7 +569,7 @@ Import-Module ActiveDirectory
 
 
         #Now Add New-ADUser Creation
-            New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $$MiddleI -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
+            New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
         
         #If no cell than it will add "no cell" to phone description
             if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
