@@ -66,6 +66,7 @@ Import-Module ActiveDirectory
                                 {($_ -eq "Project Manager") -or ($_ -eq "Project") -or ($_ -eq "PM")} {$Dept = "Project Manager"}
                                 {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
                                 {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS")} {$Dept = "Information Technology"}
+                                {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "Design")} {$Dept = "Marketing"}
                                 default {
                                     Write-Warning "Invalid response."
                                     continue serviceloop
@@ -563,13 +564,70 @@ Import-Module ActiveDirectory
 
 
         #Now Add New-ADUser Creation
-            New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path -Confirm -PassThru | Enable-ADAccount
+            New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
         
+        #If no cell than it will add "no cell" to phone description
             if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
                                         {Set-ADUser $User -Replace @{info='no cell'}
                                     }
         #Now Add Group Association
-            Add-ADGroupMember -Identity "General" -Members $EmailAddress
+            
+            Add-ADGroupMember -Identity "General" -Members $User
+            Add-ADGroupMember -Identity "Global" -Members $User
+
+            #Add more group associations based on location
+                
+                switch ($Local)
+                       {
+                        "MA" {Add-ADGroupMember -Identity "MA" -Members $User}
+                        "VT" {Add-ADGroupMember -Identity "VT" -Members $User}
+                        "ME" {Add-ADGroupMember -Identity "ME" -Members $User}
+                        "NH" {Add-ADGroupMember -Identity "NH" -Members $User}
+                        "CT" {Add-ADGroupMember -Identity "CT" -Members $User}
+                        "NJ" {Add-ADGroupMember -Identity "NJ" -Members $User}
+                        "FL" {Add-ADGroupMember -Identity "FL" -Members $User}
+                        "NY" {Add-ADGroupMember -Identity "NY" -Members $User}
+                        default {
+                            Write-Warning "An Error Has Occurred."
+                            break
+                            }
+                        }
+              #Add more group associations based on department
+                
+                switch ($Dept)
+                       {
+                        "Accounting" {Add-ADGroupMember -Identity "Accounting" -Members $User
+                                      Add-ADGroupMember -Identity "Timberline" -Members $User
+                                     }
+                        "Field Technician" {Add-ADGroupMember -Identity "Notify" -Members $User}
+                        "Operations" {Add-ADGroupMember -Identity "logistics" -Members $User
+                                      Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     }
+                        "Transportation and Disposal" {Add-ADGroupMember -Identity "NH" -Members $User}
+                        "Project Manager" {Add-ADGroupMember -Identity "logistics" -Members $User
+                                           Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                           Add-ADGroupMember -Identity "PM" -Members $User
+                                           Add-ADGroupMember -Identity "Estimating" -Members $User
+                                           Add-ADGroupMember -Identity "Steam" -Members $User
+                                           Add-ADGroupMember -Identity "Timberline" -Members $User
+                                           Add-ADGroupMember -Identity "Service Center Managers" -Members $User
+                                     }
+                        "Human Resources" {Add-ADGroupMember -Identity "HSC" -Members $User
+                                           Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     }
+                        "Information Technology" {Add-ADGroupMember -Identity "Marketing" -Members $User
+                                                  Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     }
+                        "Marketing" {Add-ADGroupMember -Identity "Marketing" -Members $User
+                                     Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     Add-ADGroupMember -Identity "marketingadmin" -Members $User
+                                     Add-ADGroupMember -Identity "Steam" -Members $User
+                                     }
+                        default {
+                            Write-Warning "An Error Has Occurred."
+                            break
+                            }
+                        }
 
         Write-Host "New User Added"
 
