@@ -59,13 +59,13 @@ Import-Module ActiveDirectory
                         $Dept = Read-Host "Enter Department"
                         switch ($Dept)
                             {
-                                {($_ -eq "Accounting") -or ($_ -eq "Account") -or ($_ -eq "Acc")} {$Dept = "Accounting"}
-                                {($_ -eq "Field Technician") -or ($_ -eq "Field Tech.") -or ($_ -eq "Field Tech") -or ($_ -eq "Field") -or ($_ -eq "FT")} {$Dept = "Field Technician"}
+                                {($_ -eq "Accounting") -or ($_ -eq "Account") -or ($_ -eq "Acc") -or ($_ -eq "Ac") -or ($_ -eq "Ad")} {$Dept = "Accounting"}
+                                {($_ -eq "Field Technician") -or ($_ -eq "Field Tech.") -or ($_ -eq "Field Tech") -or ($_ -eq "Field") -or ($_ -eq "FT") -or ($_ -eq "FTech.") -or ($_ -eq "FTech")} {$Dept = "Field Technician"}
                                 {($_ -eq "Operations") -or ($_ -eq "Ops.") -or ($_ -eq "Ops")} {$Dept = "Operations"}
                                 {($_ -eq "Transportation and Disposal") -or ($_ -eq "Transportation & Disposal") -or ($_ -eq "Transportation") -or ($_ -eq "Transport") -or ($_ -eq "Disposal") -or ($_ -eq "T and D") -or ($_ -eq "T & D") -or ($_ -eq "T&D") -or ($_ -eq "TD")} {$Dept = "Transportation and Disposal"}
                                 {($_ -eq "Project Manager") -or ($_ -eq "Project") -or ($_ -eq "PM")} {$Dept = "Project Manager"}
                                 {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
-                                {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS")} {$Dept = "Information Technology"}
+                                {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS") -or ($_ -eq "Tech") -or ($_ -eq "Tech.")} {$Dept = "Information Technology"}
                                 {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "Design")} {$Dept = "Marketing"}
                                 default {
                                     Write-Warning "Invalid response."
@@ -348,10 +348,14 @@ Import-Module ActiveDirectory
     if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
         Start-Sleep -s 1
         
+        #Create a Timestamp for CSV
+        $a = Get-Date
+        $Timestamp = "$a.Day" + "/" + "$a.Month" + "/" + "$a.Year" + " UT: " +"$a.ToUniversalTime()"
         #Add a place for the CSV to go
         $CurrentUser = [Environment]::UserName
         #Now Add CSV creation/appending
             New-Object -TypeName PSCustomObject -Property @{
+                "Timestamp" = $Timestamp
                 "Username" = $User
                 "Last Name" = $Last
                 "First Name" = $First
@@ -366,7 +370,7 @@ Import-Module ActiveDirectory
                 "Work Phone" = $Phone
                 "Mobile Phone" = $MobilePh
                 "Email Address" = $EmailAddress
-            } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation #-Append
+            } | Export-Csv -Path "C:\Users\$CurrentUser\Desktop\NewUsers\Newuser $(((get-date).ToUniversalTime()).ToString("yyyyMMddThhmmssZ")).csv" -NoTypeInformation #-Append
         #Chose OU Path
             switch ($Local)
             {

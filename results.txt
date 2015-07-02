@@ -1,0 +1,108 @@
+**********************************************************************************
+
+
+Powershell New Ad User Script
+
+   Writen By: Zachary Milot
+
+     Special thanks to William Stevens for helping edit loop
+
+
+**********************************************************************************
+
+Enter Last Name: letstest
+Letstest
+Is this correct? [y/n]: y
+Enter First Name: thistest
+Thistest
+Is this correct? [y/n]: y
+
+Username is: tletstest
+
+Enter Department: it
+Information Technology
+Is this correct? [y/n]: y
+Enter Job Title: it
+It
+Is this correct? [y/n]: y
+Enter Service Center Location: f
+Franklin, MA
+Is this correct? [y/n]: y
+Enter 10 Digit Mobile Number (no hyphens or parentheses)(If no mobile number, just leave blank and h
+it enter):
+No Mobile Number.
+Is this correct? [y/n]: y
+Enter Company (ENPRO, TMC Environmental, ENPRO Environmental): tmv
+WARNING: Invalid response.
+Enter Company (ENPRO, TMC Environmental, ENPRO Environmental): y
+WARNING: Invalid response.
+Enter Company (ENPRO, TMC Environmental, ENPRO Environmental): tmc
+TMC Environmental
+Is this correct? [y/n]: y
+
+
+User's Last Name Is:  Letstest
+User's First Name Is : Thistest
+User's Department Is : Information Technology
+User's Location Is : Franklin, MA
+User's Job Title Is : It
+User's Phone Number : (508) 966-6000
+User's Fax Number : (508) 966-4861
+User's Mobile Phone Number :
+User's Email Address : tletstest@tmcenvironmental.com
+Is all this Inofrmation correct? [y/n]: y
+AccountPassword: **********
+New User Added
+Would you like to add a another new user?: y
+Okay Add a New User
+
+Enter Last Name: secondtest
+Secondtest
+Is this correct? [y/n]: y
+Enter First Name: oftest
+Oftest
+Is this correct? [y/n]: y
+
+Username is: osecondtest
+
+Enter Department: i
+WARNING: Invalid response.
+Enter Department: it
+Information Technology
+Is this correct? [y/n]: n
+Enter Department: hr
+Human Resources
+Is this correct? [y/n]: y
+Enter Job Title: it
+It
+Is this correct? [y/n]: n
+Enter Job Title: tester
+Tester
+Is this correct? [y/n]: y
+Enter Service Center Location: ma
+WARNING: Invalid response: Enter City of Service Center (Franklin or Salisbury)
+Enter Service Center Location: f
+Franklin, MA
+Is this correct? [y/n]: y
+Enter 10 Digit Mobile Number (no hyphens or parentheses)(If no mobile number, just leave blank and h
+it enter):
+No Mobile Number.
+Is this correct? [y/n]: y
+Enter Company (ENPRO, TMC Environmental, ENPRO Environmental): tmc
+TMC Environmental
+Is this correct? [y/n]: y
+
+
+User's Last Name Is:  Secondtest
+User's First Name Is : Oftest
+User's Department Is : Human Resources
+User's Location Is : Franklin, MA
+User's Job Title Is : Tester
+User's Phone Number : (508) 966-6000
+User's Fax Number : (508) 966-4861
+User's Mobile Phone Number :
+User's Email Address : osecondtest@tmcenvironmental.com
+Is all this Inofrmation correct? [y/n]: y
+AccountPassword: **********
+New User Added
+Would you like to add a another new user?:
