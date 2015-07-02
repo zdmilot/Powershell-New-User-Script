@@ -67,7 +67,7 @@ Import-Module ActiveDirectory
                                 {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
                                 {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS")} {$Dept = "Information Technology"}
                                 default {
-                                    Write-Host "Invalid response."
+                                    Write-Warning "Invalid response."
                                     continue serviceloop
                                 }
                             }
@@ -101,7 +101,7 @@ Import-Module ActiveDirectory
                         $Local = Read-Host "Enter Service Center Location"
                         switch ($Local)
                             { #DeExt = default extension aka the last 4 of the phone number of the service center. Thsi is here if one wanted to have code that created users with an extension equivilent to the last 4 digits of the service centers phone number
-                                {($_ -eq "MA") -or ($_ -eq "Mass") -or ($_ -eq "Massachusetts")} {Write-Host "Invalid response: Enter City of Service Center (Franklin or Salisbury)"
+                                {($_ -eq "MA") -or ($_ -eq "Mass") -or ($_ -eq "Massachusetts")} {Write-Warning "Invalid response: Enter City of Service Center (Franklin or Salisbury)"
                                             continue serviceloop}
                                 "Franklin" {$Local = "MA"
                                             $Address = "19 National Drive"
@@ -120,9 +120,9 @@ Import-Module ActiveDirectory
                                             $Fax = "(978) 465-2050"}
 
 
-                                {($_ -eq "VT") -or ($_ -eq "Vermont")} {Write-Host "Invalid response: Enter City of Service Center (S. Burlington, Burlington, or Williston)"
+                                {($_ -eq "VT") -or ($_ -eq "Vermont")} {Write-Warning "Invalid response: Enter City of Service Center (S. Burlington, Burlington, or Williston)"
                                             continue serviceloop}
-                                {($_ -eq "S. Burlington") -or ($_ -eq "S.Burlington") -or ($_ -eq "SBurlington") -or ($_ -eq "Southb") -or ($_ -eq "SouthBurlington") -or ($_ -eq "South Burlington")} {$Local = "MA"
+                                {($_ -eq "S. Burlington") -or ($_ -eq "S.Burlington") -or ($_ -eq "SBurlington") -or ($_ -eq "Southb") -or ($_ -eq "SouthBurlington") -or ($_ -eq "South Burlington")} {$Local = "VT"
                                             $Address = "40 San Remo Drive"
                                             $ServCity = "South Burlington"
                                             $Zip = "05403"
@@ -147,7 +147,7 @@ Import-Module ActiveDirectory
                                             $Fax = "(802) 860-7202"}
 
 
-                                {($_ -eq "ME") -or ($_ -eq "Maine")} {Write-Host "Invalid response: Enter City of Service Center (S. Portland or Portland)"
+                                {($_ -eq "ME") -or ($_ -eq "Maine")} {Write-Warning "Invalid response: Enter City of Service Center (S. Portland or Portland)"
                                             continue serviceloop}
                                 "Portland" {$Local = "ME"
                                             $Address = "31 Waldron Way"
@@ -166,7 +166,7 @@ Import-Module ActiveDirectory
                                             $Fax = "(207) 799-5565"}
 
 
-                                {($_ -eq "NH") -or ($_ -eq "New Hampshire")} {Write-Host "Invalid response: Enter City of Service Center (Portsmith or Pembroke)"
+                                {($_ -eq "NH") -or ($_ -eq "New Hampshire")} {Write-Warning "Invalid response: Enter City of Service Center (Portsmith or Pembroke)"
                                             continue serviceloop}
                                 "Portsmith" {$Local = "NH"
                                             $Address = "141 Banfield Road, Suite 11"
@@ -220,7 +220,7 @@ Import-Module ActiveDirectory
                                             $DeExt = "7622"
                                             $Fax = "(518) 464-7633"}
                                 default {
-                                    Write-Host "Invalid response."
+                                    Write-Warning "Invalid response."
                                     continue serviceloop
                                 }
                             }
@@ -274,7 +274,7 @@ Import-Module ActiveDirectory
                                             Write-Host $MobilePh
                                 }
                         else
-                               {Write-Host "Invalid response."
+                               {Write-Warning "Invalid response."
                                     continue serviceloop}
 
                         $Correct7 = Read-Host "Is this correct? [y/n]"
@@ -300,7 +300,7 @@ Import-Module ActiveDirectory
                                 {($_ -eq "ENPRO Environmental") -or ($_ -eq "ENPEnv")} {$Company = "ENPRO Environmental"
                                           $emailending = "enproenv.com"}
                                 default {
-                                    Write-Host "Invalid response."
+                                    Write-Warning "Invalid response."
                                     continue serviceloop
                                 }
                             }
@@ -342,62 +342,257 @@ Import-Module ActiveDirectory
     $Phone = ($Phone.Substring(1,$Phone.Length-11)) + "." + ($Phone.Substring(6,$Phone.Length-11)) + "." + $Phone.substring($Phone.length - 4, 4)
     $Fax = ($Fax.Substring(1,$Fax.Length-11)) + "." + ($Fax.Substring(6,$Fax.Length-11)) + "." + $Fax.substring($Fax.length - 4, 4)
 
-$Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
+    $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
-if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
-    Start-Sleep -s 1
+    if ($Correct3 -eq "y" -or $Correct3 -eq "Y") {
+        Start-Sleep -s 1
         
-    #Add a place for the CSV to go
-    $CurrentUser = [Environment]::UserName
-    #Now Add CSV creation/appending
-        New-Object -TypeName PSCustomObject -Property @{
-            "Username" = $User
-            "Last Name" = $Last
-            "First Name" = $First
-            "Department" = $Dept
-            "Job Title" = $Title
-            "Company" = $Company
-            "Address" = $Address
-            "State" = $Local
-            "City" = $ServCity
-            "Zip Code" = $Zip
-            "Extension" = $Ext
-            "Work Phone" = $Phone
-            "Mobile Phone" = $MobilePh
-            "Email Address" = $EmailAddress
-        } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation #-Append
-   
-    #Now Add New-ADUser Creation
-        New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress <#-Path "CN=$First$last,OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"#> -Confirm
-        
-        if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
-                                    {Set-ADUser $User -Replace @{info='no cell'}
-                                }
-    #Now Add Group Association
-        #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
+        #Add a place for the CSV to go
+        $CurrentUser = [Environment]::UserName
+        #Now Add CSV creation/appending
+            New-Object -TypeName PSCustomObject -Property @{
+                "Username" = $User
+                "Last Name" = $Last
+                "First Name" = $First
+                "Department" = $Dept
+                "Job Title" = $Title
+                "Company" = $Company
+                "Address" = $Address
+                "State" = $Local
+                "City" = $ServCity
+                "Zip Code" = $Zip
+                "Extension" = $Ext
+                "Work Phone" = $Phone
+                "Mobile Phone" = $MobilePh
+                "Email Address" = $EmailAddress
+            } | Export-Csv -Path C:\Users\$CurrentUser\Desktop\NewUsers.csv -NoTypeInformation #-Append
+        #Chose OU Path
+            switch ($Local)
+            {
+                "MA" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
+                     
 
-    Write-Host "New User Added"
+                "VT" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                     }
 
-    #Add user creation code so that it can loop back and create another user afterwards (possably ask in an if loop to ask if you want to add another user)
+                  "ME" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
 
-    $Correct4 = Read-Host "Would you like to add a another new user?"
-    if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
-            Write-Host "Okay Add a New User`n"
-            Start-Sleep -s 1
-            continue serviceloop
+                  "NH" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
 
+                  "CT" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
+
+                  "NJ" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
+
+                  "FL" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
+
+                  "NY" {if ($Dept = "Accounting")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Field Technician")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Operations")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Transportation and Disposal")
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Project Manager")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Human Resources")
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      elseif ($Dept = "Information Technology")
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        }
+                      }
+                      
+                  
+                default {
+                    Write-Warning "An Error Has Occurred."
+                    break
                 }
+            }
+
+
+        #Now Add New-ADUser Creation
+            New-ADUser -Name $First$Last -AccountPassword (Read-Host -AsSecureString "AccountPassword") -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $User -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path -Confirm -PassThru | Enable-ADAccount
+        
+            if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
+                                        {Set-ADUser $User -Replace @{info='no cell'}
+                                    }
+        #Now Add Group Association
+            #Add-ADGroupMember [-Identity] <ADGroup> [-Members] <ADPrincipal[]> [-AuthType {<Negotiate> | <Basic>}] [-Credential <PSCredential>] [-Partition <string>] [-PassThru <switch>] [-Server <string>] [-Confirm] [-WhatIf] [<CommonParameters>]
+
+        Write-Host "New User Added"
+
+        #Added loop back and create another user afterwards
+
+        $Correct4 = Read-Host "Would you like to add a another new user?"
+        if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+                Write-Host "Okay Add a New User`n"
+                Start-Sleep -s 1
+                continue serviceloop
+
+                    }
+        else{
+                   Write-Host "`n Okay then. Goodbye.`n"
+                   Start-Sleep -s 1
+                   break
+                    }     
+        }
+
+
+
     else{
-               Write-Host "`n Okay then. Goodbye.`n"
-               Start-Sleep -s 1
-               break
-                }     
+       Write-Host "`n Retry Entering Information.`n"
+       continue serviceloop
+        }     
     }
-
-
-
-else{
-   Write-Host "`n Retry Entering Information.`n"
-   continue serviceloop
-    }     
-}
