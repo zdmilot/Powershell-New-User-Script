@@ -403,187 +403,187 @@ Import-Module ActiveDirectory
             switch ($Local)
             {
                 "MA" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
                      
 
                 "VT" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                      }
 
                   "ME" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
 
                   "NH" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
 
                   "CT" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
 
                   "NJ" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
 
                   "FL" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
 
                   "NY" {if ($Dept -eq "Accounting")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Field Technician")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Operations")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Transportation and Disposal")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Lockdown and Internet,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Project Manager")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Human Resources")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=Office Employees,OU=Franklin,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       elseif ($Dept -eq "Information Technology")
-                        {$Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                        {$Path = "OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                         }
                       }
                       
@@ -596,7 +596,7 @@ Import-Module ActiveDirectory
 
 
         #Now Add New-ADUser Creation
-            New-ADUser -Name $First$Last -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -Description $Local -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $MiddleI -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
+            New-ADUser -Name $First$Last -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $Initials -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
         
         #If no cell than it will add "no cell" to phone description
             if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
@@ -660,6 +660,7 @@ Import-Module ActiveDirectory
                             break
                             }
                         }
+              <# Set-ADUser $User -HomePage 'http://yoda/' -DisplayName "$FullNameWS"#>
 
         Write-Host "New User Added"
 
