@@ -363,7 +363,7 @@ Import-Module ActiveDirectory
 
     #The following code converts the phone numbers with parentheses and dashes to a phone number with dots (to follow the naming convention of AD)
 
-    if (10 -eq ($MobilePh | measure-object -character | select -expandproperty characters))
+    if (1 -lt ($MobilePh | measure-object -character | select -expandproperty characters))
                                 {$MobilePh = ($MobilePh.Substring(1,$MobilePh.Length-11)) + "." + ($MobilePh.Substring(6,$MobilePh.Length-11)) + "." + $MobilePh.substring($MobilePh.length - 4, 4)
                                             break
                                 }
