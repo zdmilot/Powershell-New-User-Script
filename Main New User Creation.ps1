@@ -298,6 +298,7 @@ Import-Module ActiveDirectory
                                 }
                         else
                                {Write-Warning "Invalid response."
+                               Clear-Variable MobilePh
                                     continue serviceloop}
 
                         <#$Correct7 = Read-Host "Is this correct? [y/n]"
