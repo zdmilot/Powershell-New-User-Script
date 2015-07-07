@@ -1,6 +1,6 @@
 ﻿Write-Host "**********************************************************************************`n
             
-Powershell New Ad User Script`n
+Powershell New AD User Script`n
    Writen By: Zachary Milot`n
      Special thanks to William Stevens for helping edit loop`n
             
@@ -596,7 +596,7 @@ Import-Module ActiveDirectory
 
 
         #Now Add New-ADUser Creation
-            New-ADUser -Name $First$Last -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -Description $Local -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $MiddleI -MobilePhone $MobilePh -OfficePhone $Phone -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
+            New-ADUser -Name $First$Last -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -Description $Local -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $MiddleI -MobilePhone $MobilePh <#-OfficePhone $Phone#> -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
         
         #If no cell than it will add "no cell" to phone description
             if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters))
