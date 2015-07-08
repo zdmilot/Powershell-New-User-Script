@@ -639,10 +639,7 @@ Import-Module ActiveDirectory
                         "Project Manager" {Add-ADGroupMember -Identity "logistics" -Members $User
                                            Add-ADGroupMember -Identity "Project Managers" -Members $User
                                            Add-ADGroupMember -Identity "PM" -Members $User
-                                           Add-ADGroupMember -Identity "Estimating" -Members $User
-                                           Add-ADGroupMember -Identity "Steam" -Members $User
                                            Add-ADGroupMember -Identity "Timberline" -Members $User
-                                           Add-ADGroupMember -Identity "Service Center Managers" -Members $User
                                      }
                         "Human Resources" {Add-ADGroupMember -Identity "HSC" -Members $User
                                            Add-ADGroupMember -Identity "Project Managers" -Members $User
@@ -655,6 +652,11 @@ Import-Module ActiveDirectory
                                      Add-ADGroupMember -Identity "marketingadmin" -Members $User
                                      Add-ADGroupMember -Identity "Steam" -Members $User
                                      }
+                        "Sales" {Add-ADGroupMember -Identity "Marketing" -Members $User
+                                     Add-ADGroupMember -Identity "logistics" -Members $User
+                                     Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     Add-ADGroupMember -Identity "Steam" -Members $User
+                                     }
                         default {
                             Write-Warning "An Error Has Occurred."
                             break
@@ -662,17 +664,20 @@ Import-Module ActiveDirectory
                         }
 
        #Create a new mailbox in exchange
+        $Correct4 = Read-Host "Would you like to add a mailbox?"
+        if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+            $ErrorActionPreference = "SilentlyContinue"
             add-pssnapin Microsoft.Exchange.Management.PowerShell.E2010
             Enable-Mailbox -Identity $EmailAddress
+                    }
 
             
-
         Write-Host "New User Added"
 
         #Added loop back and create another user afterwards
 
-        $Correct4 = Read-Host "Would you like to add a another new user?"
-        if ($Correct4 -eq "y" -or $Correct4 -eq "Y") {
+        $Correct5 = Read-Host "Would you like to add a another new user?"
+        if ($Correct5 -eq "y" -or $Correct5 -eq "Y") {
                 Write-Host "Okay Add a New User`n"
                 Start-Sleep -s 1
                 continue serviceloop
