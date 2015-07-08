@@ -662,8 +662,8 @@ Import-Module ActiveDirectory
                         }
 
        #Create a new mailbox in exchange
-       #     add-pssnapin Microsoft.Exchange.Management.PowerShell.E2010
-       #     New-Mailbox -UserPrincipalName $EmailAddress -Alias $First <#-Database "Mailbox Database 1"#> -Name $First$Last <#-OrganizationalUnit Users#> -Password (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -FirstName $First -LastName $Last -DisplayName $FullNameWS
+            add-pssnapin Microsoft.Exchange.Management.PowerShell.E2010
+            Enable-Mailbox -Identity $EmailAddress
 
             
 
