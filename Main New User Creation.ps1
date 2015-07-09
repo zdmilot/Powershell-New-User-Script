@@ -11,16 +11,19 @@ Import-Module ActiveDirectory
             :serviceloop while(1) {
                         $Last = Read-Host "Enter Last Name"
 
-                        if (($Last[-3] + $Last[-2] + $Last[-1]) -eq "Jr."){
+                        if (($Last[-3] + $Last[-2] + $Last[-1]) -eq "Jr.")
+                            {
                                 $Last = $Last.tolower()
                                 $Last1 = $Last[-3] + $Last[-2]
                                 $Last2 = $Last.TrimEnd("jr.")
+                                $LastM = $LastE.TrimEnd()
                                 $Last2 = $Last2.TrimEnd()
                                 $LastD = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower()) + " " + (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + "."
                                 $Last = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
                             }
 
-                        elseif (($Last[-2] + $Last[-1]) -eq "Jr"){
+                        elseif (($Last[-2] + $Last[-1]) -eq "Jr")
+                            {
                                 $Last = $Last.tolower()
                                 $Last1 = $Last[-2] + $Last[-1]
                                 $Last2 = $Last.TrimEnd("jr")
@@ -29,7 +32,7 @@ Import-Module ActiveDirectory
                                 $LastE = $LastE.TrimEnd() + "jr"
                                 $LastD = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower()) + " " + (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + "."
                                 $Last = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
-                            }
+                                }
 
                         else{
                                 $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
@@ -37,36 +40,34 @@ Import-Module ActiveDirectory
                                 $LastE = $Last
                             }
 
-                        if (($Last[0] + $Last[1]) -eq "mc"){
+                        if (($Last[0] + $Last[1]) -eq "mc")
+                            {
                                 $Last1 = $LastD[0] + $LastD[1]
                                 $Last2 = $LastD.substring(2)
                                 $LastD = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
-                                $Last = $LastD
+                                
                              }
-                        elseif (($Last[0] + $Last[1]) -eq "O'"){
+                        elseif (($Last[0] + $Last[1]) -eq "O'")
+                            {
                                 $Last1 = $LastE[0] + $LastE[1]
                                 $Last2 = $LastD.substring(2)
                                 $LastD = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
                                 $Last3 = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
                                 $LastE = $LastE[0] + $LastE.substring(2)
-                                $Last = $LastD
                                 
                             }
                         else{
                                 $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
-                                $LastD = $Last
                                 $LastE = $Last
                             }
-
+                       
                         write-Host $LastD
                         
-                      
                         <#$Correct1 = Read-Host "Is this correct? [y/n]"
  
-                        if ($Correct1 -eq "y" -or $Correct1 -eq "Y"){
-                                break
-                          }#>
-
+                        if ($Correct1 -eq "y" -or $Correct1 -eq "Y") {
+                            break
+                                  }#>
                         break
                         }
 
@@ -131,6 +132,8 @@ Import-Module ActiveDirectory
                                         $Dept = "Supervisors and Foremen"}
                                 {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "Compliance") -or ($_ -eq "HR") -or ($_ -eq "H")} {
                                         $Dept = "Human Resources"}
+                                {($_ -eq "Health and Safety") -or ($_ -eq "Health") -or ($_ -eq "Safety") -or ($_ -eq "HS") -or ($_ -eq "H and S") -or ($_ -eq "HandS") -or ($_ -eq "H & S") -or ($_ -eq "H&S") -or ($_ -eq "HNS")} {
+                                        $Dept = "Health and Safety"}
                                 {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS") -or ($_ -eq "Tech") -or ($_ -eq "Tech.") -or ($_ -eq "I")} {
                                         $Dept = "Information Technology"}
                                 {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "M") -or ($_ -eq "Design")} {
@@ -534,6 +537,9 @@ Import-Module ActiveDirectory
                         elseif ($Dept -eq "Sales"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
+                        elseif ($Dept -eq "Health and Safety"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
                         else    {
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
@@ -569,6 +575,9 @@ Import-Module ActiveDirectory
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         elseif ($Dept -eq "Sales"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
+                        elseif ($Dept -eq "Health and Safety"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         else    {
@@ -607,6 +616,9 @@ Import-Module ActiveDirectory
                         elseif ($Dept -eq "Sales"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
+                        elseif ($Dept -eq "Health and Safety"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
                         else    {
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
@@ -641,6 +653,9 @@ Import-Module ActiveDirectory
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         elseif ($Dept -eq "Sales"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
+                        elseif ($Dept -eq "Health and Safety"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         else    {
@@ -679,6 +694,9 @@ Import-Module ActiveDirectory
                         elseif ($Dept -eq "Sales"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
+                        elseif ($Dept -eq "Health and Safety"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
                         else    {
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
@@ -713,6 +731,9 @@ Import-Module ActiveDirectory
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         elseif ($Dept -eq "Sales"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
+                        elseif ($Dept -eq "Health and Safety"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         else    {
@@ -751,6 +772,9 @@ Import-Module ActiveDirectory
                         elseif ($Dept -eq "Sales"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
+                        elseif ($Dept -eq "Health and Safety"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
                         else    {
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
@@ -785,6 +809,9 @@ Import-Module ActiveDirectory
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         elseif ($Dept -eq "Sales"){
+                                $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
+                                }
+                        elseif ($Dept -eq "Health and Safety"){
                                 $Path = "OU=New Users,OU=TMC,DC=MainOffice,DC=hazmatt,DC=com"
                                 }
                         else    {
@@ -901,6 +928,9 @@ Import-Module ActiveDirectory
                                      }
                         "Supervisors and Foremen" {
                                 Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     }
+                        "Health and Safety" {
+                                Add-ADGroupMember -Identity "Notify" -Members $User
                                      }
                         default {
                             Write-Warning "An Error Has Occurred."
