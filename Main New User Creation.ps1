@@ -11,17 +11,59 @@ Import-Module ActiveDirectory
             :serviceloop while(1) {
                         $Last = Read-Host "Enter Last Name"
 
-                       if (($Last[0] + $Last[1]) -eq "mc")
+                        if (($Last[-3] + $Last[-2] + $Last[-1]) -eq "Jr.")
                             {
-                        $Last1 = $Last[0] + $Last[1]
-                        $Last2 = $Last.substring(2)
-                        $Last = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
-                            }
-                        else{
-                        $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
+                                $Last = $Last.tolower()
+                                $Last1 = $Last[-3] + $Last[-2]
+                                $Last2 = $Last.TrimEnd("jr.")
+                                $Last2 = $Last2.TrimEnd()
+                                $LastD = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower()) + " " + (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + "."
+                                $Last = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
                             }
 
-                           write-Host $Last
+                        elseif (($Last[-2] + $Last[-1]) -eq "Jr")
+                            {
+                                $Last = $Last.tolower()
+                                $Last1 = $Last[-2] + $Last[-1]
+                                $Last2 = $Last.TrimEnd("jr")
+                                $Last2 = $Last2.TrimEnd()
+                                $LastE = $Last.TrimEnd("jr")
+                                $LastE = $LastE.TrimEnd() + "jr"
+                                $LastD = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower()) + " " + (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + "."
+                                $Last = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
+                            }
+
+                        else{
+                                $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
+                                $LastD = $Last
+                                $LastE = $Last
+                            }
+
+                        if (($Last[0] + $Last[1]) -eq "mc")
+                            {
+                                $Last1 = $LastD[0] + $LastD[1]
+                                $Last2 = $LastD.substring(2)
+                                $LastD = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
+                                $Last = $LastD
+                             }
+                        elseif (($Last[0] + $Last[1]) -eq "O'")
+                            {
+                                $Last1 = $LastE[0] + $LastE[1]
+                                $Last2 = $LastD.substring(2)
+                                $LastD = (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
+                                $Last3 = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
+                                $LastE = $LastE[0] + $LastE.substring(2)
+                                $Last = $LastD
+                                
+                            }
+                        else{
+                                $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
+                                $LastD = $Last
+                                $LastE = $Last
+                            }
+
+                        write-Host $LastD
+                        
                       
                         <#$Correct1 = Read-Host "Is this correct? [y/n]"
  
@@ -64,7 +106,7 @@ Import-Module ActiveDirectory
                         }
 
 
-                    $User = $First[0] + $Last
+                    $User = $First[0] + $LastE
 
                     $User = “$user”.tolower()
 
@@ -76,14 +118,26 @@ Import-Module ActiveDirectory
                         $Dept = Read-Host "Enter Department"
                         switch ($Dept)
                             {
-                                {($_ -eq "Accounting") -or ($_ -eq "Account") -or ($_ -eq "Acc") -or ($_ -eq "Ac") -or ($_ -eq "Ad")} {$Dept = "Accounting"}
-                                {($_ -eq "Field Technician") -or ($_ -eq "Field Tech.") -or ($_ -eq "Field Tech") -or ($_ -eq "Field") -or ($_ -eq "FT") -or ($_ -eq "FTech.") -or ($_ -eq "FTech")} {$Dept = "Field Technician"}
-                                {($_ -eq "Operations") -or ($_ -eq "Ops.") -or ($_ -eq "Ops")} {$Dept = "Operations"}
-                                {($_ -eq "Transportation and Disposal") -or ($_ -eq "Transportation & Disposal") -or ($_ -eq "Transportation") -or ($_ -eq "Transport") -or ($_ -eq "Disposal") -or ($_ -eq "T and D") -or ($_ -eq "T & D") -or ($_ -eq "T&D") -or ($_ -eq "TD")} {$Dept = "Transportation and Disposal"}
-                                {($_ -eq "Project Manager") -or ($_ -eq "Project") -or ($_ -eq "PM")} {$Dept = "Project Manager"}
-                                {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "Compliance") -or ($_ -eq "HR")} {$Dept = "Human Resources"}
-                                {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS") -or ($_ -eq "Tech") -or ($_ -eq "Tech.")} {$Dept = "Information Technology"}
-                                {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "Design")} {$Dept = "Marketing"}
+                                {($_ -eq "Accounting") -or ($_ -eq "Account") -or ($_ -eq "Acc") -or ($_ -eq "Ac") -or ($_ -eq "AD") -or ($_ -eq "A")} {
+                                        $Dept = "Accounting"}
+                                {($_ -eq "Field Technician") -or ($_ -eq "Field Services") -or ($_ -eq "FServices") -or ($_ -eq "FService") -or ($_ -eq "Field Tech.") -or ($_ -eq "Field Tech") -or ($_ -eq "Field") -or ($_ -eq "FT") -or ($_ -eq "FS") -or ($_ -eq "F") -or ($_ -eq "FTech.") -or ($_ -eq "FTech")} {
+                                        $Dept = "Field Services"}
+                                {($_ -eq "Operations") -or ($_ -eq "Ops.") -or ($_ -eq "Ops") -or ($_ -eq "O")} {
+                                        $Dept = "Operations"}
+                                {($_ -eq "Transportation and Disposal") -or ($_ -eq "Transportation & Disposal") -or ($_ -eq "Transportation") -or ($_ -eq "Transport") -or ($_ -eq "Disposal") -or ($_ -eq "T and D") -or ($_ -eq "TandD") -or ($_ -eq "T & D") -or ($_ -eq "T&D") -or ($_ -eq "TD") -or ($_ -eq "T")} {
+                                        $Dept = "Transportation and Disposal"}
+                                {($_ -eq "Project Manager") -or ($_ -eq "Project Managers") -or ($_ -eq "Project Management") -or ($_ -eq "Project Mgmt") -or ($_ -eq "Project") -or ($_ -eq "PM") -or ($_ -eq "P")} {
+                                        $Dept = "Project Management"}
+                                {($_ -eq "Supervisors") -or ($_ -eq "Foreman") -or ($_ -eq "Foremen") -or ($_ -eq "Supervisors and Foreman") -or ($_ -eq "Supervisors and Foremen") -or ($_ -eq "Supervisor") -or ($_ -eq "SF")} {
+                                        $Dept = "Supervisors and Foremen"}
+                                {($_ -eq "Human Resources") -or ($_ -eq "Human") -or ($_ -eq "Compliance") -or ($_ -eq "HR") -or ($_ -eq "H")} {
+                                        $Dept = "Human Resources"}
+                                {($_ -eq "Information Technology") -or ($_ -eq "Information Services") -or ($_ -eq "IT") -or ($_ -eq "IS") -or ($_ -eq "Tech") -or ($_ -eq "Tech.") -or ($_ -eq "I")} {
+                                        $Dept = "Information Technology"}
+                                {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "M") -or ($_ -eq "Design")} {
+                                        $Dept = "Marketing"}
+                                {($_ -eq "Sales") -or ($_ -eq "Sail") -or ($_ -eq "Sale") -or ($_ -eq "sold")} {
+                                        $Dept = "Sales"}
                                 default {
                                     Write-Warning "Invalid response."
                                     continue serviceloop
@@ -322,7 +376,7 @@ Import-Module ActiveDirectory
                                 {($_ -eq "TMC Environmental") -or ($_ -eq "TMC")} {$Company = "TMC Environmental"
                                       $emailending = "tmcenvironmental.com"}
                                 {($_ -eq "ENPRO Environmental") -or ($_ -eq "ENPEnv")} {$Company = "ENPRO Environmental"
-                                          $emailending = "enproenv.com"}
+                                          $emailending = "enpro.com"}
                                 default {
                                     Write-Warning "Invalid response."
                                     continue serviceloop
@@ -347,7 +401,7 @@ Import-Module ActiveDirectory
                     $Phone = $PhoneArea + $Ext
 
 
-                    $FullNameWS = $First + " " + $Last
+                    $FullNameWS = $First + " " + $LastD
 
 
     Write-Host `n
@@ -362,13 +416,20 @@ Import-Module ActiveDirectory
     Write-Host "User's Mobile Phone Number :" $MobilePh
     Write-Host "User's Email Address :" $EmailAddress
 
+
+
     #The following code converts the phone numbers with parentheses and dashes to a phone number with dots (to follow the naming convention of AD)
 
-    if (1 -lt ($MobilePh | measure-object -character | select -expandproperty characters))
-                                {$MobilePh = ($MobilePh.Substring(1,$MobilePh.Length-11)) + "." + ($MobilePh.Substring(6,$MobilePh.Length-11)) + "." + $MobilePh.substring($MobilePh.length - 4, 4)
-                                }
+    if (1 -lt ($MobilePh | measure-object -character | select -expandproperty characters)){
+            $MobilePh = ($MobilePh.Substring(1,$MobilePh.Length-11)) + "." + ($MobilePh.Substring(6,$MobilePh.Length-11)) + "." + $MobilePh.substring($MobilePh.length - 4, 4)
+            }
+
     $Phone = ($Phone.Substring(1,$Phone.Length-11)) + "." + ($Phone.Substring(6,$Phone.Length-11)) + "." + $Phone.substring($Phone.length - 4, 4)
     $Fax = ($Fax.Substring(1,$Fax.Length-11)) + "." + ($Fax.Substring(6,$Fax.Length-11)) + "." + $Fax.substring($Fax.length - 4, 4)
+
+
+
+    #User Verification by creator
 
     $Correct3 = Read-Host "Is all this Inofrmation correct? [y/n]"
  
@@ -378,9 +439,11 @@ Import-Module ActiveDirectory
         #Create a Timestamp for CSV
         $a = Get-Date
         $Timestamp = "$a.Day" + "/" + "$a.Month" + "/" + "$a.Year" + " UT: " +"$a.ToUniversalTime()"
+
         #Add a place for the CSV to go
         $CurrentUser = [Environment]::UserName
         [system.io.directory]::CreateDirectory("C:\Users\$CurrentUser\Desktop\NewUsers")
+
         #Now Add CSV creation/appending
             New-Object -TypeName PSCustomObject -Property @{
                 "Timestamp" = $Timestamp
@@ -399,6 +462,7 @@ Import-Module ActiveDirectory
                 "Mobile Phone" = $MobilePh
                 "Email Address" = $EmailAddress
             } | Export-Csv -Path "C:\Users\$CurrentUser\Desktop\NewUsers\Newuser $(((get-date).ToUniversalTime()).ToString("yyyyMMddThhmmssZ")).csv" -NoTypeInformation #-Append
+
         #Chose OU Path
             switch ($Local)
             {
@@ -628,34 +692,49 @@ Import-Module ActiveDirectory
                 
                 switch ($Dept)
                        {
-                        "Accounting" {Add-ADGroupMember -Identity "Accounting" -Members $User
-                                      Add-ADGroupMember -Identity "Timberline" -Members $User
+                        "Accounting" {
+                                Add-ADGroupMember -Identity "Accounting" -Members $User
+                                Add-ADGroupMember -Identity "Timberline" -Members $User
                                      }
-                        "Field Technician" {Add-ADGroupMember -Identity "Notify" -Members $User}
-                        "Operations" {Add-ADGroupMember -Identity "logistics" -Members $User
-                                      Add-ADGroupMember -Identity "Project Managers" -Members $User
+                        "Field Serveces" {
+                                Add-ADGroupMember -Identity "Notify" -Members $User
+                                }
+                        "Operations" {
+                                Add-ADGroupMember -Identity "logistics" -Members $User
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
                                      }
-                        "Transportation and Disposal" {Add-ADGroupMember -Identity "NH" -Members $User}
-                        "Project Manager" {Add-ADGroupMember -Identity "logistics" -Members $User
-                                           Add-ADGroupMember -Identity "Project Managers" -Members $User
-                                           Add-ADGroupMember -Identity "PM" -Members $User
-                                           Add-ADGroupMember -Identity "Timberline" -Members $User
+                        "Transportation and Disposal" {
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
                                      }
-                        "Human Resources" {Add-ADGroupMember -Identity "HSC" -Members $User
-                                           Add-ADGroupMember -Identity "Project Managers" -Members $User
+                        "Project Management" {
+                                Add-ADGroupMember -Identity "Notify" -Members $User
+                                Add-ADGroupMember -Identity "logistics" -Members $User
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                Add-ADGroupMember -Identity "PM" -Members $User
+                                Add-ADGroupMember -Identity "Timberline" -Members $User
                                      }
-                        "Information Technology" {Add-ADGroupMember -Identity "Marketing" -Members $User
-                                                  Add-ADGroupMember -Identity "Project Managers" -Members $User
+                        "Human Resources" {
+                                Add-ADGroupMember -Identity "HSC" -Members $User
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
                                      }
-                        "Marketing" {Add-ADGroupMember -Identity "Marketing" -Members $User
-                                     Add-ADGroupMember -Identity "Project Managers" -Members $User
-                                     Add-ADGroupMember -Identity "marketingadmin" -Members $User
-                                     Add-ADGroupMember -Identity "Steam" -Members $User
+                        "Information Technology" {
+                                Add-ADGroupMember -Identity "Marketing" -Members $User
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
                                      }
-                        "Sales" {Add-ADGroupMember -Identity "Marketing" -Members $User
-                                     Add-ADGroupMember -Identity "logistics" -Members $User
-                                     Add-ADGroupMember -Identity "Project Managers" -Members $User
-                                     Add-ADGroupMember -Identity "Steam" -Members $User
+                        "Marketing" {
+                                Add-ADGroupMember -Identity "Marketing" -Members $User
+                                Add-ADGroupMember -Identity "marketingadmin" -Members $User
+                                Add-ADGroupMember -Identity "Steam" -Members $User
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                     }
+                        "Sales" {
+                                Add-ADGroupMember -Identity "Marketing" -Members $User
+                                Add-ADGroupMember -Identity "logistics" -Members $User
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
+                                Add-ADGroupMember -Identity "Steam" -Members $User
+                                     }
+                        "Supervisors and Foremen" {
+                                Add-ADGroupMember -Identity "Project Managers" -Members $User
                                      }
                         default {
                             Write-Warning "An Error Has Occurred."
