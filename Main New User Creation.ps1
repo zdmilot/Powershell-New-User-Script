@@ -502,7 +502,7 @@ Import-Module ActiveDirectory
                 "Work Phone" = $Phone
                 "Mobile Phone" = $MobilePh
                 "Email Address" = $EmailAddress
-            } | Export-Csv -Path "C:\Users\$CurrentUser\Desktop\NewUsers\Newuser $(((get-date).ToUniversalTime()).ToString("yyyyMMddThhmmssZ")).csv" -NoTypeInformation #-Append
+            } | Export-Csv -Path "C:\Users\$CurrentUser\Desktop\NewUsers\Newuser $(((get-date).ToUniversalTime()).ToString("yyyyMMddThhmmssZ")).csv" -NoTypeInformation  <#-Append#> | Out-Null 
 
         #Chose OU Path
             switch ($Local){
@@ -829,7 +829,9 @@ Import-Module ActiveDirectory
 
         #Now Add New-ADUser Creation
             New-ADUser -Name $FullNameWS -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -Description $Local -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $MiddleI -MobilePhone $MobilePh <#-OfficePhone $Phone#> -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
+            Set-ADUser $User -Add @{otherTelephone=$Phone} 
         
+
         #If no cell than it will add "no cell" to phone description
             if ( "0" -eq ($MobilePh | measure-object -character | select -expandproperty characters)){
                     Set-ADUser $User -Replace @{info='no cell'}
