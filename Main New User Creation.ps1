@@ -16,8 +16,9 @@ Import-Module ActiveDirectory
                                 $Last = $Last.tolower()
                                 $Last1 = $Last[-3] + $Last[-2]
                                 $Last2 = $Last.TrimEnd("jr.")
-                                $LastM = $LastE.TrimEnd()
                                 $Last2 = $Last2.TrimEnd()
+                                $LastE = $Last.TrimEnd("jr.")
+                                $LastE = $LastE.TrimEnd() + "jr"
                                 $LastD = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower()) + " " + (Get-Culture).textinfo.totitlecase(“$Last1”.tolower()) + "."
                                 $Last = (Get-Culture).textinfo.totitlecase(“$Last2”.tolower())
                             }
@@ -58,7 +59,7 @@ Import-Module ActiveDirectory
                             }
                         else{
                                 $Last = (Get-Culture).textinfo.totitlecase(“$Last”.tolower())
-                                $LastE = $Last
+                                #$LastE = $Last
                             }
                        
                         write-Host $LastD
