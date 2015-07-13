@@ -483,7 +483,7 @@ Import-Module ActiveDirectory
 
         #Add a place for the CSV to go
         $CurrentUser = [Environment]::UserName
-        [system.io.directory]::CreateDirectory("C:\Users\$CurrentUser\Desktop\NewUsers")
+        [system.io.directory]::CreateDirectory("C:\Users\$CurrentUser\Desktop\NewUsers") | Out-Null 
 
         #Now Add CSV creation/appending
             New-Object -TypeName PSCustomObject -Property @{
