@@ -91,19 +91,29 @@ Import-Module ActiveDirectory
  
 
                :serviceloop while(1) {
-                        $MiddleI = Read-Host "Enter Middle Initial"
+                    $MiddleI = Read-Host "Enter Middle Initial"
+                    if ( "0" -eq ($MiddleI | measure-object -character | select -expandproperty characters)){
+                            Write-Host "No Middle Initial."
+                            break
+                            }
+                    elseif (1 -eq ($MiddleI | measure-object -character | select -expandproperty characters)){
+                            $MiddleI = $MiddleI[0].ToString().ToUpper()
+                            Write-Host $MiddleI
 
-                        $MiddleI = $MiddleI[0].ToString().ToUpper()
+                            break
+                            }
+                    else{
+                            Write-Warning "Invalid response."
+                            Clear-Variable MiddleI
+                            continue serviceloop
+                            }
 
-                        Write-Host $MiddleI
+                    <#$Correct3 = Read-Host "Is this correct? [y/n]"
+     
+                    if ($Correct3 -eq "y" -or $Correct3 -eq "Y"){
+                            break
+                      }#>
 
-                        <#$Correct3 = Read-Host "Is this correct? [y/n]"
- 
-                        if ($Correct3 -eq "y" -or $Correct3 -eq "Y"){
-                                break
-                          }#>
-
-                        break
                         }
 
 
@@ -829,7 +839,7 @@ Import-Module ActiveDirectory
 
 
         #Now Add New-ADUser Creation
-            New-ADUser -Name $FullNameWS -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon 1 -City $ServCity -Company $Company -Department $Dept -Description $Local -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $MiddleI -MobilePhone $MobilePh <#-OfficePhone $Phone#> -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
+            New-ADUser -Name $FullNameWS -AccountPassword (ConvertTo-SecureString -AsPlainText "Reset321" -Force) -ChangePasswordAtLogon $true -City $ServCity -Company $Company -Department $Dept -Description $Local -DisplayName $FullNameWS -EmailAddress $EmailAddress -Fax $Fax -GivenName $First -HomeDirectory \\leia\users\"$User" -HomeDrive "z" -Initials $MiddleI -MobilePhone $MobilePh <#-OfficePhone $Phone#> -Organization $Company -PostalCode $Zip -SamAccountName $User  -State $local -StreetAddress $Address -Surname $Last -Title $Title -UserPrincipalName $EmailAddress -Path $Path <#-Confirm#> -PassThru | Enable-ADAccount
             Set-ADUser $User -Add @{otherTelephone=$Phone} 
         
 
