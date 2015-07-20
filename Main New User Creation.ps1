@@ -150,7 +150,7 @@ Import-Module ActiveDirectory
                                         $Dept = "Information Technology"}
                                 {($_ -eq "Marketing") -or ($_ -eq "Market") -or ($_ -eq "MT") -or ($_ -eq "M") -or ($_ -eq "Design")} {
                                         $Dept = "Marketing"}
-                                {($_ -eq "Sales") -or ($_ -eq "Sail") -or ($_ -eq "Sale") -or ($_ -eq "sold")} {
+                                {($_ -eq "Sales") -or ($_ -eq "Sail") -or ($_ -eq "Sale") -or ($_ -eq "SLS") -or ($_ -eq "sold")} {
                                         $Dept = "Sales"}
                                 default {
                                     Write-Warning "Invalid response."
@@ -833,7 +833,9 @@ Import-Module ActiveDirectory
                       
                   
                 default {
-                    Write-Warning "An Error Has Occurred."
+                    Write-Warning "An Error Has Occurred, where the department entered does not have a match
+                     to the paths for which an end user should go. In this case the user will be in the New Users Organizational Unit (almost like a folder).
+                     Please contact the administrator in order to convey this message."
                     break
                 }
             }
