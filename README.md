@@ -61,7 +61,7 @@ This solicits the user to define the variable $MiddleI.
 
 This loop contains <b>NO</b> error correction, but does only accept single character responses, with auto capitalization.
 
-#### Department Field [HAS TO BE CHANGED IF DEPARTMENT NAMES GET ADDED OR CHANGED]
+#### Department Field [CHANGED IF DEPT. NAMES GET ADDED OR CHANGED]
 
 This solicits the user to define the variable $Dept.
 
