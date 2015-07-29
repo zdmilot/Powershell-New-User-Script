@@ -1,23 +1,18 @@
-gGRC-Core
+Powershell New-ADUser Creation Script
 =========
 
-[![Travis status](https://travis-ci.org/google/ggrc-core.svg?branch=develop)](https://travis-ci.org/google/ggrc-core)
-[![Code Climate](https://codeclimate.com/github/google/ggrc-core/badges/gpa.svg)](https://codeclimate.com/github/google/ggrc-core)
-
-Google Governance, Risk and Compliance. Migrated from [Google](https://code.google.com/p/compliance-management/)
-[Code](https://code.google.com/p/ggrc-core).
+Writen by [Zachary Milot] (http://www.zdmilot.com/), with help from [William Stevens] (https://github.com/wastevensv) 
 
 Requirements
 ------------
 
-The following software is required to stand up a gGRC-Core development
-environment:
+The following is required to run the script:
 
 |               Prerequisite               |               Description                |
 |------------------------------------------|------------------------------------------|
-|[VirtualBox](https://www.virtualbox.org/) | Oracle VirtualBox Virtual Machine player |
-|[Vagrant](http://www.vagrantup.com/)      | Handy scriptable VM management           |
-|[Ansible](http://www.ansible.com/home)    | Provisioning and deployment tool         |
+|[Windows Server](http://www.microsoft.com/en-us/server-cloud/products/windows-server-2012-r2/https://www.virtualbox.org/) | Have the ability to run at least PowerShell 2.0 |
+|[PowerShell 2.0 or Greater](https://www.microsoft.com/en-us/download/details.aspx?id=40855)      | Will run on PowerShell 2.0, but works best on 3.0           |
+|[ActiveDirectory Module](http://blogs.msdn.com/b/rkramesh/archive/2012/01/17/how-to-add-active-directory-module-in-powershell-in-windows-7.aspx)    | Comes with Windows Server         |
 
 Quick Start
 -----------
