@@ -89,9 +89,13 @@ Import-Module ActiveDirectory
                         break
                         }
  
-
+                #If there is already a middle initial defined from a previous solicited input, this will clear it
+                if (1 -eq ($MiddleI | measure-object -character | select -expandproperty characters)){
+                            Clear-Variable MiddleI
+                            }
+                
                :serviceloop while(1) {
-                    $MiddleI = Read-Host "Enter Middle Initial"
+                    $MiddleI = Read-Host "Enter Middle Initial (If no middle initial, just leave blank and hit enter)"
                     if ( "0" -eq ($MiddleI | measure-object -character | select -expandproperty characters)){
                             Write-Host "No Middle Initial."
                             
