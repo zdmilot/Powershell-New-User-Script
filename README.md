@@ -103,4 +103,20 @@ This solicits the user to define the variable $Company.
 
 This loop <b>CONTAINS</b> error correction for input of an abbreviation of a company.
 
-###Background User Creation and Solicitation for confirmation
+###Background User Creation and Solicitation for Confirmation
+
+#### &#8226;User Displayed All Inputs to be Used to Create Account
+
+After all the prompts have been 
+
+#### &#8226;First Name Field
+
+
+
+#### &#8226;Middle Initial Field
+
+
+
+#### &#8226;Department Field [CHANGED IF DEPT. GET ADDED OR CHANGED]
+
+
