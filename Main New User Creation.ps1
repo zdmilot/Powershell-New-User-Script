@@ -136,7 +136,7 @@
                                 break
                                 }
                         else{
-                                Write-Warning "Invalid response."
+                                Write-Warning "Invalid response: Please enter a single letter or press enter if it is unknown."
                                 Clear-Variable MiddleI
                                 continue serviceloop
                                 }
@@ -197,7 +197,7 @@
                                     {($_ -eq "Sales") -or ($_ -eq "Sail") -or ($_ -eq "Sale") -or ($_ -eq "SLS") -or ($_ -eq "sold")} {
                                             $Dept = "Sales"}
                                     default {
-                                        Write-Warning "Invalid response."
+                                        Write-Warning "Invalid response: Please enter a valid department (Accounting, Field Services, Transportation and Disposal, Project Management, Supervisors and Foremen, Human Resources, Health and Safety, Information Technology, Marketing, or Sales)"
                                         continue serviceloop
                                     }
                                 }
@@ -242,12 +242,12 @@
 
    THIS IS THE PLACE TO CHANGE/ADD SERVICE CENTERS IN THE CODE
 
-   $DeExt = the last four of the phone number of each service center (this is there because if the extension field is enabled it would replace the last four of that phone number with their extension
 #>
                         :serviceloop while(1) {
                             $Local = Read-Host "Enter Service Center Location"
                             switch ($Local)
-                                { #DeExt = default extension aka the last 4 of the phone number of the service center. Thsi is here if one wanted to have code that created users with an extension equivilent to the last 4 digits of the service centers phone number
+                                { 
+    #DeExt = default extension aka the last 4 of the phone number of the service center. This is here if one wanted to have code that created users with an extension equivilent to the last 4 digits of the service centers phone number
                                     {($_ -eq "MA") -or ($_ -eq "Mass") -or ($_ -eq "Massachusetts")} {Write-Warning "Invalid response: Enter City of Service Center (Franklin or Salisbury)"
                                                 continue serviceloop}
                                     {($_ -eq "F") -or ($_ -eq "Franklin")} {
@@ -496,16 +496,16 @@
                             $Company = Read-Host "Enter Company (ENPRO, TMC Environmental)"
                             switch ($Company)
                                 {
-                                    {($_ -eq "ENPRO") -or ($_ -eq "EN")} {
+                                    {($_ -eq "ENPRO") -or ($_ -eq "EN") -or ($_ -eq "E") -or ($_ -eq "EPRO")} {
                                             $Company = "ENPRO"
                                             $emailending = "enpro.com"
                                             }
-                                    {($_ -eq "TMC Environmental") -or ($_ -eq "TMC")} {
+                                    {($_ -eq "TMC Environmental") -or ($_ -eq "TMC") -or ($_ -eq "T")} {
                                             $Company = "TMC Environmental"
                                             $emailending = "tmcenvironmental.com"
                                             }
                                     default {
-                                        Write-Warning "Invalid response."
+                                        Write-Warning "Invalid response: Enter TMC or ENPRO"
                                         continue serviceloop
                                     }
                                 }
