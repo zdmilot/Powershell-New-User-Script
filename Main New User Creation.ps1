@@ -884,7 +884,7 @@ Import-Module ActiveDirectory
                                 }
 
                         default {
-                            Write-Warning "An Error Has Occurred."
+                            Write-Warning "An Error Has Occurred: State doesnt exist as a group"
                             break
                             }
                         }
@@ -896,7 +896,7 @@ Import-Module ActiveDirectory
                                 Add-ADGroupMember -Identity "Accounting" -Members $User
                                 Add-ADGroupMember -Identity "Timberline" -Members $User
                                      }
-                        "Field Serveces" {
+                        "Field Services" {
                                 Add-ADGroupMember -Identity "Notify" -Members $User
                                 }
                         "Operations" {
