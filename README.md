@@ -31,9 +31,11 @@ Script Breakdown
 
 The breakdown below will give you a glimpse of what the script does.
 
-###<u>User Solicited Input</u>
 
-#### &#8226;Last Name Field
+
+###User Solicited Input
+
+##### &#8226;Last Name Field
 
 This solicits a user to define a single variable $First which turns into mutable variables inside of a loop, and checks if it contains a
 Jr. of jr and it makes a couple of copies of the variable if it does. The copies of the variable
@@ -48,32 +50,32 @@ to be in one (ie display name and email) but not the other (ie last name).
 
 This loop contains <b>NO</b> error correction, only separation for certain parts of the last name.
 
-#### &#8226;First Name Field
+##### &#8226;First Name Field
 
 This solicits a user to define the variable $First.
 
 This loop contains <b>NO</b> error correction, and no separation for different parts of the name.
 It does however contain auto capitalization, but that is it (basically WYSIWYG).
 
-#### &#8226;Middle Initial Field
+##### &#8226;Middle Initial Field
 
 This solicits the user to define the variable $MiddleI.
 
 This loop contains <b>NO</b> error correction, but does only accept single character responses, with auto capitalization.
 
-#### &#8226;Department Field [CHANGED IF DEPT. GET ADDED OR CHANGED]
+##### &#8226;Department Field [CHANGED IF DEPT. GET ADDED OR CHANGED]
 
 This solicits the user to define the variable $Dept.
 
 This loop <b>CONTAINS</b> error correction for abbreviations of a department.
 
-#### &#8226;Job Title Field
+##### &#8226;Job Title Field
 
 This solicits the user to define the variable $Title.
 
 This loop contains <b>NO</b> error correction, but has auto capitalization.
 
-#### &#8226;Service Center Location Field
+##### &#8226;Service Center Location Field
 
 This solicits the user to define the variable $Local, which turns into mutable variables like $Local, which could be the same
 variable before, but it would be the abbreviation of a state like MA; $Address, which is the street address for that service center;
@@ -83,7 +85,7 @@ number for that service center; and $Fax which defines the fax number for the se
 
 This loop <b>CONTAINS</b> error correction for input of a city or a state (sometimes a user must input a specific city if there are two in one state).
 
-#### &#8226;Extension Field (OPTIONAL and COMMENED OUT)
+##### &#8226;Extension Field (OPTIONAL and COMMENED OUT)
  
 This solicits the user to define the variable $Ext. This field is commented out, because normally a user of this script would not be
 able to provide an extension for a user, but it is here if needed in the future. This field only accepts four characters and would
@@ -91,37 +93,39 @@ replace the last four digits of the phone number, previously defined in the serv
 
 This loop contains <b>NO</b> error correction, but only accepts four characters.
 
-#### &#8226;Mobile Phone Field
+##### &#8226;Mobile Phone Field
 
 This solicits the user to define the variable $MobilePh. This field is for users to be able to add a mobile phone number to a user’s profile if they have it.
 
 This loop contains <b>NO</b> error correction for the data entered into the field, but only accepts 10 characters.
 
-#### &#8226;Company Field
+##### &#8226;Company Field
 
 This solicits the user to define the variable $Company.
 
 This loop <b>CONTAINS</b> error correction for input of an abbreviation of a company.
 
-###<u>Background User Creation and Solicitation for Confirmation</u>
 
-#### &#8226;User Displayed All Inputs to be Used to Create Account
+
+###Background User Creation and Solicitation for Confirmation
+
+##### &#8226;User Displayed All Inputs to be Used to Create Account
 
 After all the prompts have been properly answered the user is shown the final variables.
 
-#### &#8226;Changing The Phone Numbers To Domain Norms
+##### &#8226;Changing The Phone Numbers To Domain Norms
 
 The next part of the script will take the mobile phone number, phone number, and fax, and remove the parentheses and dashes, and insert . like
 from (508) 966-6000 to 508.966.6000
 
-#### &#8226;Conformation of Correct Information
+##### &#8226;Conformation of Correct Information
 
 At this point the user will have a "yes or no"" prompt that will ask them if all of the information is correct.
 
 If they state that yes, it is correct: The loop will break and the information will be entered into following Cmdlets
 If they state that no, it is not correct: The loop will start over again
 
-#### If Yes, Lets Move On: 
-#### &#8226;
+##### If Yes, Lets Move On: 
+##### &#8226;
 
 
