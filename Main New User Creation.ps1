@@ -594,6 +594,9 @@
                     "Email Address" = $EmailAddress
                 } | Export-Csv -Path "C:\Users\$CurrentUser\Desktop\NewUsers\Newuser $(((get-date).ToUniversalTime()).ToString("yyyyMMddThhmmssZ")).csv" -NoTypeInformation  <#-Append#> | Out-Null 
 
+
+
+
 <##Chose OU Path based on service center and department, they are all the same, but can be changed if they need to be moved into other locations
    
    THIS IS THE SECOND FEILD THAT HAS TO BE CHANGED IF DEPARTMENT NAMES GET ADDED OR CHANGED!

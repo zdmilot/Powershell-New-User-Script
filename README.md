@@ -31,7 +31,7 @@ Script Breakdown
 
 The breakdown below will give you a glimpse of what the script does.
 
-###User Solicited Input
+###<u>User Solicited Input</u>
 
 #### &#8226;Last Name Field
 
@@ -103,20 +103,25 @@ This solicits the user to define the variable $Company.
 
 This loop <b>CONTAINS</b> error correction for input of an abbreviation of a company.
 
-###Background User Creation and Solicitation for Confirmation
+###<u>Background User Creation and Solicitation for Confirmation</u>
 
 #### &#8226;User Displayed All Inputs to be Used to Create Account
 
-After all the prompts have been 
+After all the prompts have been properly answered the user is shown the final variables.
 
-#### &#8226;First Name Field
+#### &#8226;Changing The Phone Numbers To Domain Norms
 
+The next part of the script will take the mobile phone number, phone number, and fax, and remove the parentheses and dashes, and insert . like
+from (508) 966-6000 to 508.966.6000
 
+#### &#8226;Conformation of Correct Information
 
-#### &#8226;Middle Initial Field
+At this point the user will have a "yes or no"" prompt that will ask them if all of the information is correct.
 
+If they state that yes, it is correct: The loop will break and the information will be entered into following Cmdlets
+If they state that no, it is not correct: The loop will start over again
 
-
-#### &#8226;Department Field [CHANGED IF DEPT. GET ADDED OR CHANGED]
+#### If Yes, Lets Move On: 
+#### &#8226;
 
 
