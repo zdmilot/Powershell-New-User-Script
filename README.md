@@ -33,7 +33,7 @@ The breakdown below will give you a glimpse of what the script does.
 
 ###User Solicited Input
 
-## Last Name Field
+#### Last Name Field
 
 This solicits a user to define a single variable $First which turns into mutable variables inside of a loop, and checks if it contains a
 Jr. of jr and it makes a couple of copies of the variable if it does. The copies of the variable
@@ -48,32 +48,32 @@ to be in one (ie display name and email) but not the other (ie last name).
 
 This loop contains <b>NO</b> error correction, only separation for certain parts of the last name.
 
-## First Name Field
+#### First Name Field
 
 This solicits a user to define the variable $First.
 
 This loop contains <b>NO</b> error correction, and no separation for different parts of the name.
 It does however contain auto capitalization, but that is it (basically WYSIWYG).
 
-## Middle Initial Field
+#### Middle Initial Field
 
 This solicits the user to define the variable $MiddleI.
 
 This loop contains <b>NO</b> error correction, but does only accept single character responses, with auto capitalization.
 
-## Department Field [HAS TO BE CHANGED IF DEPARTMENT NAMES GET ADDED OR CHANGED]
+#### Department Field [HAS TO BE CHANGED IF DEPARTMENT NAMES GET ADDED OR CHANGED]
 
 This solicits the user to define the variable $Dept.
 
 This loop <b>CONTAINS</b> error correction for abbreviations of a department.
 
-## Job Title Field
+#### Job Title Field
 
 This solicits the user to define the variable $Title.
 
 This loop contains <b>NO</b> error correction, but has auto capitalization.
 
-## Service Center Location Field
+#### Service Center Location Field
 
 This solicits the user to define the variable $Local, which turns into mutable variables like $Local, which could be the same
 variable before, but it would be the abbreviation of a state like MA; $Address, which is the street address for that service center;
@@ -83,7 +83,7 @@ number for that service center; and $Fax which defines the fax number for the se
 
 This loop <b>CONTAINS</b> error correction for input of a city or a state (sometimes a user must input a specific city if there are two in one state).
 
-## Extension Field (OPTIONAL and COMMENED OUT)
+#### Extension Field (OPTIONAL and COMMENED OUT)
  
 This solicits the user to define the variable $Ext. This field is commented out, because normally a user of this script would not be
 able to provide an extension for a user, but it is here if needed in the future. This field only accepts four characters and would
@@ -91,13 +91,13 @@ replace the last four digits of the phone number, previously defined in the serv
 
 This loop contains <b>NO</b> error correction, but only accepts four characters.
 
-## Mobile Phone Field
+#### Mobile Phone Field
 
 This solicits the user to define the variable $MobilePh. This field is for users to be able to add a mobile phone number to a user’s profile if they have it.
 
 This loop contains <b>NO</b> error correction for the data entered into the field, but only accepts 10 characters.
 
-## Company Field
+#### Company Field
 
 This solicits the user to define the variable $Company.
 
