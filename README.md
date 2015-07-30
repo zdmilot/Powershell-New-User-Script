@@ -126,6 +126,52 @@ If they state that yes, it is correct: The loop will break and the information w
 If they state that no, it is not correct: The loop will start over again
 
 ##### If Yes, Lets Move On: 
-##### &#8226;
 
+##### &#8226;Z Drive Creation (only possible with PS3)
 
+This will create a users Z drive, and set full control permissions to the user who's account will be attached to the
+folder.
+
+##### &#8226;CSV Creation
+
+Creates a log of what the person entered into the script, by placing a CSV file in a folder on the desktop.
+PowerShell 2 does not support -append during creation, so separate files have to be made in order for the script to make a log.
+
+##### &#8226;Move User to Proper OU [CHANGED IF DEPT. GET ADDED OR CHANGED]
+
+This is the field which places the user in an Organizational Unit in Active Directory, by changing the $Path variable which is used in
+the New-ADUser Cmdlet.
+
+##### &#8226;New-ADUser Creation
+
+This is the part of the script where all variables get imputed to create a user account. This shouldn't
+be changed, only appended, as these variables are predefined.
+
+##### &#8226;If No Cell Phone
+
+What this does, is if the user did not define a cell phone number it will change the description of the phone
+number to be no cell.
+
+##### &#8226;Add Group Association For All Users
+
+This part of the script will add group association like "General" and "Global" which is added to all users
+
+##### &#8226;Add Group Association Based Upon Service Center Location
+
+This part adds groups like "MA" or "FL" or "CT" to a users profile
+
+##### &#8226;Add Group Association Based Upon Dept.[CHANGED IF DEPT. GET ADDED OR CHANGED]
+
+This part adds a user to a specific group based upon there department.
+
+##### &#8226;Adding A Mailbox Solicitation
+
+This loop asks the user if they would like to add a users mailbox.
+
+If yes: A users mailbox is enabled in exchange if the admin entering the new employees information
+has acces to exchange.
+If no: A users mailbox won't be created and the script will move once
+
+##### &#8226;Displayed that the script has completed
+
+##### &#8226;Asks The User If They Would Like to Add Another User

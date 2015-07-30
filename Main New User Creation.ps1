@@ -224,7 +224,10 @@
                             $Title = (Get-Culture).textinfo.totitlecase(“$Title”.tolower())
 
                             Write-Host $Title
-
+                            if ( "0" -eq ($Title | measure-object -character | select -expandproperty characters)){
+                                    Write-Warning "Try entering the Job Title again."
+                                    continue serviceloop
+                                    }
     #Remove the "<#> if you want user verification of information on this feild
                             <#$Correct5 = Read-Host "Is this correct? [y/n]"
  
@@ -564,6 +567,16 @@
  
         if ($Correct10 -eq "y" -or $Correct10 -eq "Y") {
             Start-Sleep -s 1
+
+
+##Create Users Z drive and grant them full control ONLY WORKS WITH POWERSHELL 3
+        <#    New-Item -type directory -path "\\leia\Users\$User"
+            $Acl = Get-Acl "\\leia\Users\$User"
+            $Ar = New-Object  system.security.accesscontrol.filesystemaccessrule("$User","FullControl","Allow")
+            $Acl.SetAccessRule($Ar)
+            Set-Acl "\\leia\Users\$User" $Acl
+
+        #>
 
 
 ##CSV Creation for logging of what users information was sent to the New-ADUser cmdlet        
@@ -1060,6 +1073,7 @@
 
 
 ##Added loop back and create another user afterwards if user wants to add a new user$Correct12 = Read-Host "Would you like to add another new user?"
+            $Correct12 = Read-Host "Would you like to add a another new user?"
             if ($Correct12 -eq "y" -or $Correct12 -eq "Y"){
                     Write-Host "Okay Add a New User`n"
     #Waits 1 second before prompting the user for more input
